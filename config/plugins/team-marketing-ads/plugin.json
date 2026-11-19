@@ -1,0 +1,12 @@
+{
+  "name": "team-marketing-ads",
+  "displayName": "Team 9: Marketing, Quảng Cáo & Sản Phẩm Số",
+  "version": "1.0.0",
+  "description": "Đội ngũ nhân sự AI chuyên vẽ chân dung khách hàng 9 phần, chạy & kiểm toán Google/Facebook Ads (Audit A1-A14, ROAS/CRO, Editor CSV), viết content bán hàng 14 công thức và đóng gói sản phẩm số.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Vẽ chân dung khách hàng 9 phần (Value Proposition + Bản đồ Thấu cảm 6 vùng) và góc bán hàng",
+    "Kiểm toán chiến dịch Google Ads (A1-A14), từ khóa, tracking chuyển đổi và xuất Google Ads Editor CSV",
+    "Viết content quảng cáo bán hàng 14 công thức (AIDA/PAS/FAB) hoặc đóng gói lộ trình sản phẩm số 7 ngày"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "team-video-editing-motion",
+  "displayName": "Team 5: Edit Video, Motion & Hậu Kỳ",
+  "version": "1.0.0",
+  "description": "Phòng dựng & hậu kỳ video tự động: AI Video Studio (:5186), Remotion, Motion Canvas, Manim, Auto-Editor, Editly, FFmpeg, Kinetic Reel, Hoạt hình màu nước, Recordly Tutorial và QA kiểm định frame MP4.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Edit video tự động bằng AI Video Studio (:5186) hoặc FFmpeg/Auto-Editor, lồng tiếng AI và xuất hàng loạt",
+    "Lập trình video Motion / Kinetic Typography / Hoạt hình bằng Remotion, Manim hoặc p5.brush",
+    "Quay và biên tập video tutorial hướng dẫn phần mềm bằng Recordly kèm phụ đề .SRT và Auto-Zoom"
+  ]
+}

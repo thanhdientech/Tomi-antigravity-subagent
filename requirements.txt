@@ -1,0 +1,26 @@
+# ==============================================================================
+# TOMI ANTIGRAVITY SUBAGENT (14 TEAMS / 51 SUBAGENTS) — PYTHON REQUIREMENTS
+# Cài nhanh: pip install -r requirements.txt
+# ==============================================================================
+
+# --- NHÓM 1: BẮT BUỘC (Core — Bộ Não Lai Javis FTS5, MCP Server, Hooks, Team Memory) ---
+pyyaml>=6.0.1
+mcp>=1.2.0
+requests>=2.31.0
+psutil>=5.9.0
+
+# --- NHÓM 2: DỮ LIỆU, BÁO CÁO & OFFICE (Team 2, 3, 7, 8, 9) ---
+pandas>=2.2.0
+openpyxl>=3.1.2
+pillow>=10.0.0
+beautifulsoup4>=4.12.0
+lxml>=5.0.0
+
+# --- NHÓM 3: HẠ TẦNG VPS / SSH & SAP B1 SQL (Team 6 & Team 8) ---
+paramiko>=3.4.0
+pyodbc>=5.1.0
+sqlalchemy>=2.0.0
+
+# --- NHÓM 4: YOUTUBE RADAR & TỬ VI (Team 12 & Skill Tử Vi) ---
+scrapetube>=2.5.1
+iztro-py>=0.1.0

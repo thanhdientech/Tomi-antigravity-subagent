@@ -1,0 +1,12 @@
+{
+  "name": "team-web-wordpress-seo",
+  "displayName": "Team 2: Web, WordPress, Landing Page & SEO",
+  "version": "1.0.0",
+  "description": "Đội ngũ nhân sự AI chuyên xây dựng website WordPress/Flatsome, Landing Page VIP VietQR/CAPI, chuyển đổi HTML sang Webcake (.pke), kiểm toán SEO/GEO và tốc độ.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Xây dựng hoặc sửa lỗi website WordPress Flatsome kèm kiểm chứng HTTP 200 & chụp ảnh Desktop/Mobile",
+    "Tạo Landing Page VIP 1 file HTML hoàn chỉnh có form, VietQR và dual tracking CAPI qua webhook",
+    "Kiểm toán Technical SEO, Schema JSON-LD, E-E-A-T và tối ưu AI Search (GEO) cho website"
+  ]
+}

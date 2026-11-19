@@ -1,0 +1,12 @@
+{
+  "name": "team-sap-b1-sql",
+  "displayName": "Team 8: ERP SAP B1, Beas & Kế Toán SQL",
+  "version": "1.0.0",
+  "description": "Đội ngũ nhân sự AI chuyên SAP Business One (9.3/10.0), Boyum Beas Manufacturing, viết & chạy test T-SQL/HANA SQLScript qua sql_runner.py Read-Only và kiểm toán số liệu giá thành WIP 154 theo Thông tư 99/2025/TT-BTC.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Kiểm tra schema bảng SAP B1/Beas và viết câu T-SQL báo cáo khớp số thực qua sql_runner.py",
+    "Phân tích quy trình sản xuất Beas, tính giá thành WIP 154 và định khoản chuẩn Thông tư 99/2025/TT-BTC",
+    "Kiểm toán đối chiếu tổng Nợ = Có và kiểm tra logic SBO_SP_TransactionNotification / FMS"
+  ]
+}

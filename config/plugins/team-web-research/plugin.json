@@ -1,0 +1,12 @@
+{
+  "name": "team-web-research",
+  "displayName": "Team 5: Tra Cứu & Kiểm Chứng Thông Tin Web",
+  "version": "1.0.0",
+  "description": "Đội ngũ nhân sự AI cố định chuyên tìm kiếm tài liệu web, kiểm chứng nguồn gốc 4 tọa độ (chống ảo giác AI) và biên tập báo cáo chuẩn 3 tầng.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Tra cứu và kiểm chứng chéo thông tin mới nhất kèm đủ 4 tọa độ nguồn và link HTTP 200",
+    "So sánh tài liệu chính thức của hãng kèm bảng đối chiếu nguồn 6 cột",
+    "Kiểm tra độ chính xác của một bài viết hoặc số liệu trên mạng và gắn nhãn tin cậy"
+  ]
+}

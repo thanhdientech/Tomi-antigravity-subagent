@@ -1,0 +1,12 @@
+{
+  "name": "team-video-film-channel",
+  "displayName": "Team 4: Phim AI, Biên Kịch & Xây Kênh MXH",
+  "version": "1.0.0",
+  "description": "Đội ngũ nhân sự AI chuyên biên kịch Drama/YouTube/Shopee Affiliate, đạo diễn prompt ảnh/video (Veo 3, Seedance, Google Flow), vận hành OmniFlow :8500 / Shopee KOL :8600 và tự động hóa xây kênh đa profile.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Viết kịch bản và phân cảnh storyboard cuốn chiếu (khóa nhân vật 4 góc) cho phim ngắn Drama hoặc YouTube",
+    "Lập CSV Prompt ảnh/video chuẩn Veo 3 / Seedance 2.0 / Google Flow mã hóa utf-8-sig đủ 100% số cảnh",
+    "Điều phối sản xuất & đăng lịch tự động kênh YouTube/Facebook đa profile qua Omni-Browser"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "team-planning-blueprint",
+  "displayName": "Team 0: Lên Kế Hoạch & Chốt Đặc Tả (Blueprint)",
+  "version": "1.0.0",
+  "description": "Cổng khởi tạo Bước 0 bắt buộc: phỏng vấn gỡ điểm mù (Grill-Me), lập Bảng Phương Án, xuất 1 file Master Blueprint kiểm định Exit 0 và chờ người dùng chốt trước khi thực thi.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Phỏng vấn Grill-Me và lập Master Blueprint cho dự án mới trước khi code",
+    "Thẩm định yêu cầu chức năng mới, lập Bảng So Sánh Phương Án và khóa phạm vi In-Scope/Out-of-Scope",
+    "Kiểm định file BLUEPRINT bằng validate_blueprint.py để xác nhận 0 chữ TBD/TODO"
+  ]
+}

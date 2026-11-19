@@ -1,0 +1,277 @@
+{
+  "team-planning-blueprint": {
+    "title": "Team 0: Lên Kế Hoạch & Chốt Đặc Tả (Blueprint)",
+    "leader": "solution-architect",
+    "members": [
+      "blueprint-interviewer",
+      "solution-architect",
+      "blueprint-spec-validator"
+    ],
+    "roles": {
+      "blueprint-interviewer": "MEMBER",
+      "solution-architect": "LEADER",
+      "blueprint-spec-validator": "MEMBER"
+    },
+    "auditors": [
+      "qa-code-tester",
+      "qa-ifixai-auditor"
+    ],
+    "pinned_paths": []
+  },
+  "team-orchestrator-qa": {
+    "title": "Team 1: Điều Phối Chống Ảo Giác & QA Đa Tầng",
+    "leader": "orchestrator-planner",
+    "members": [
+      "orchestrator-planner",
+      "qa-code-tester",
+      "qa-visual-human-tester",
+      "qa-ifixai-auditor"
+    ],
+    "roles": {
+      "orchestrator-planner": "LEADER",
+      "qa-code-tester": "INDEPENDENT_AUDITOR",
+      "qa-visual-human-tester": "INDEPENDENT_AUDITOR",
+      "qa-ifixai-auditor": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "qa-code-tester",
+      "qa-visual-human-tester",
+      "qa-ifixai-auditor"
+    ],
+    "pinned_paths": []
+  },
+  "team-web-wordpress-seo": {
+    "title": "Team 2: Web, WordPress, Landing Page & SEO",
+    "leader": "web-wp-builder",
+    "members": [
+      "web-wp-builder",
+      "web-landingpage-coder",
+      "web-seo-geo-specialist",
+      "web-performance-auditor"
+    ],
+    "roles": {
+      "web-wp-builder": "LEADER",
+      "web-landingpage-coder": "MEMBER",
+      "web-seo-geo-specialist": "MEMBER",
+      "web-performance-auditor": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "web-performance-auditor"
+    ],
+    "pinned_paths": []
+  },
+  "team-design-creative": {
+    "title": "Team 3: Design, Thương Hiệu & UI/UX",
+    "leader": "design-ui-ux-architect",
+    "members": [
+      "design-brand-identity",
+      "design-ui-ux-architect",
+      "design-visual-asset-creator",
+      "design-ux-cro-auditor"
+    ],
+    "roles": {
+      "design-brand-identity": "MEMBER",
+      "design-ui-ux-architect": "LEADER",
+      "design-visual-asset-creator": "MEMBER",
+      "design-ux-cro-auditor": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "design-ux-cro-auditor"
+    ],
+    "pinned_paths": []
+  },
+  "team-video-film-channel": {
+    "title": "Team 4: Phim AI, Biên Kịch & Xây Kênh MXH",
+    "leader": "film-scriptwriter",
+    "members": [
+      "film-scriptwriter",
+      "film-prompt-director",
+      "film-studio-producer",
+      "channel-growth-automation"
+    ],
+    "roles": {
+      "film-scriptwriter": "LEADER",
+      "film-prompt-director": "MEMBER",
+      "film-studio-producer": "MEMBER",
+      "channel-growth-automation": "MEMBER"
+    },
+    "auditors": [
+      "qa-code-tester",
+      "qa-ifixai-auditor"
+    ],
+    "pinned_paths": []
+  },
+  "team-video-editing-motion": {
+    "title": "Team 5: Edit Video, Motion & Hậu Kỳ",
+    "leader": "video-editor-ffmpeg",
+    "members": [
+      "video-editor-ffmpeg",
+      "video-motion-coder",
+      "video-tutorial-producer",
+      "video-qa-verifier"
+    ],
+    "roles": {
+      "video-editor-ffmpeg": "LEADER",
+      "video-motion-coder": "MEMBER",
+      "video-tutorial-producer": "MEMBER",
+      "video-qa-verifier": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "video-qa-verifier"
+    ],
+    "pinned_paths": []
+  },
+  "team-server-vps-hosting": {
+    "title": "Team 6: Server, VPS & Hosting",
+    "leader": "infra-linux-vps",
+    "members": [
+      "infra-linux-vps",
+      "infra-windows-server",
+      "infra-directadmin-hosting",
+      "infra-qa-security-verifier"
+    ],
+    "roles": {
+      "infra-linux-vps": "LEADER",
+      "infra-windows-server": "MEMBER",
+      "infra-directadmin-hosting": "MEMBER",
+      "infra-qa-security-verifier": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "infra-qa-security-verifier"
+    ],
+    "pinned_paths": []
+  },
+  "team-web-research": {
+    "title": "Team 7: Tra Cứu & Kiểm Chứng Thông Tin Web",
+    "leader": "web-search-scout",
+    "members": [
+      "web-search-scout",
+      "web-fact-checker",
+      "web-synthesis-editor"
+    ],
+    "roles": {
+      "web-search-scout": "LEADER",
+      "web-fact-checker": "INDEPENDENT_AUDITOR",
+      "web-synthesis-editor": "MEMBER"
+    },
+    "auditors": [
+      "web-fact-checker"
+    ],
+    "pinned_paths": []
+  },
+  "team-sap-b1-sql": {
+    "title": "Team 8: ERP SAP B1, Beas & Kế Toán SQL",
+    "leader": "sap-b1-architect",
+    "members": [
+      "sap-b1-architect",
+      "sap-sql-developer",
+      "sap-accounting-auditor"
+    ],
+    "roles": {
+      "sap-b1-architect": "LEADER",
+      "sap-sql-developer": "MEMBER",
+      "sap-accounting-auditor": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "sap-accounting-auditor"
+    ],
+    "pinned_paths": []
+  },
+  "team-marketing-ads": {
+    "title": "Team 9: Marketing, Quảng Cáo & Sản Phẩm Số",
+    "leader": "mkt-persona-strategist",
+    "members": [
+      "mkt-persona-strategist",
+      "ads-performance-specialist",
+      "mkt-copy-offer-creator"
+    ],
+    "roles": {
+      "mkt-persona-strategist": "LEADER",
+      "ads-performance-specialist": "MEMBER",
+      "mkt-copy-offer-creator": "MEMBER"
+    },
+    "auditors": [
+      "qa-code-tester",
+      "qa-ifixai-auditor"
+    ],
+    "pinned_paths": []
+  },
+  "team-reverse-security": {
+    "title": "Team 10: Dịch Ngược, Clean-Room & Bảo Mật",
+    "leader": "rev-binary-analyst",
+    "members": [
+      "rev-binary-analyst",
+      "rev-cleanroom-builder",
+      "sec-vulnerability-auditor"
+    ],
+    "roles": {
+      "rev-binary-analyst": "LEADER",
+      "rev-cleanroom-builder": "MEMBER",
+      "sec-vulnerability-auditor": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "sec-vulnerability-auditor"
+    ],
+    "pinned_paths": []
+  },
+  "team-youtube-factory": {
+    "title": "Team 12: Nhà Máy YouTube Đa Ngách (Tim Ngach Radar + OmniFlash)",
+    "leader": "yt-niche-radar",
+    "members": [
+      "yt-niche-radar",
+      "yt-content-writer",
+      "yt-prompt-director",
+      "yt-omniflash-renderer",
+      "yt-production-qa"
+    ],
+    "roles": {
+      "yt-niche-radar": "LEADER",
+      "yt-content-writer": "MEMBER",
+      "yt-prompt-director": "MEMBER",
+      "yt-omniflash-renderer": "MEMBER",
+      "yt-production-qa": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "yt-production-qa"
+    ],
+    "pinned_paths": []
+  },
+  "team-skill-curator": {
+    "title": "Team 13: Săn, Kiểm Tra, Tư Vấn & Nạp Repo Skill vào Antigravity",
+    "leader": "skill-repo-scout",
+    "members": [
+      "skill-repo-scout",
+      "skill-ingestor-builder",
+      "skill-security-qa"
+    ],
+    "roles": {
+      "skill-repo-scout": "LEADER",
+      "skill-ingestor-builder": "MEMBER",
+      "skill-security-qa": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "skill-security-qa"
+    ],
+    "pinned_paths": []
+  },
+  "team-short-video-affiliate": {
+    "title": "Team 14: Nhà Máy Video Ngắn 9:16 Facebook Reels & Tiếp Thị Liên Kết Shopee",
+    "leader": "short-channel-product-scout",
+    "members": [
+      "short-channel-product-scout",
+      "short-script-storyboarder",
+      "short-kol-studio-producer",
+      "short-video-qa-auditor"
+    ],
+    "roles": {
+      "short-channel-product-scout": "LEADER",
+      "short-script-storyboarder": "MEMBER",
+      "short-kol-studio-producer": "MEMBER",
+      "short-video-qa-auditor": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "short-video-qa-auditor"
+    ],
+    "pinned_paths": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "team-orchestrator-qa",
+  "displayName": "Team 6: Điều Phối Chống Ảo Giác & QA Đa Tầng",
+  "version": "1.0.0",
+  "description": "Bộ chỉ huy điều phối chống ảo giác, chia nhỏ Atomic Task Cards, QA test code/dữ liệu thực tế, QA dùng thử như người thật (chụp & đọc ảnh) và kiểm toán độc lập iFixAi.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Lập kế hoạch chia nhỏ Atomic Task Cards và Bảng So Sánh Phương Án trước khi làm",
+    "Chạy QA test code thực tế và dùng thử giao diện như người thật (chụp ảnh -> đọc ảnh -> soi lỗi)",
+    "Kiểm toán độc lập iFixAi 5 trụ cột và xuất Scorecard trước khi bàn giao"
+  ]
+}

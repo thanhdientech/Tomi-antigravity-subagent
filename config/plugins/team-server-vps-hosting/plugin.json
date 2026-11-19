@@ -1,0 +1,12 @@
+{
+  "name": "team-server-vps-hosting",
+  "displayName": "Team 4: Server, VPS & Hosting",
+  "version": "1.0.0",
+  "description": "Đội ngũ nhân sự AI cố định chuyên quản trị Windows Server, Linux VPS, Hosting, DirectAdmin và kiểm chứng bảo mật/QA độc lập.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Kiểm tra sức khỏe tổng thể Linux VPS (CPU, RAM, Disk, Nginx/Apache, SSL, Firewall)",
+    "Backup và restore website + database trên DirectAdmin/Hosting kèm kiểm chứng HTTP 200",
+    "Kiểm tra dịch vụ Windows Server, XAMPP/IIS và kết nối SQL Server/MySQL"
+  ]
+}

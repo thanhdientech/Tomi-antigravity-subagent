@@ -1,0 +1,12 @@
+{
+  "name": "team-design-creative",
+  "displayName": "Team 3: Design, Thương Hiệu & UI/UX",
+  "version": "1.0.0",
+  "description": "Phòng thiết kế đồ họa & UI/UX chuyên sâu: Logo SVG, bộ nhận diện thương hiệu CIP, Banner Ads, dàn trang in ấn PDF/DOCX/PPTX/Typst, UI/UX 192 ngành, GSAP 60fps và kiểm toán UX/CRO.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Thiết kế Logo SVG, bộ nhận diện thương hiệu CIP hoặc hồ sơ báo giá dàn trang in ấn PDF/Typst",
+    "Thiết kế hệ thống UI/UX chuẩn DESIGN.md và luồng Web App / Mobile App cho ngành cụ thể",
+    "Kiểm toán logic UI/UX, Responsive Mobile/Desktop, WCAG 2.2 và tối ưu CRO cho giao diện"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "email_map": {
+    "infoasiavietnam": "infoasia",
+    "regsunoai2026": "67",
+    "thanhdientraining": "7",
+    "scmsap2022": "54",
+    "nerhor.densankhau": "nerhordensankhau",
+    "tominguyen87": "tomi",
+    "saprjemma": "rjemma"
+  },
+  "url_map": {
+    "infoasia.vn": "infoasia",
+    "search.google.com": "infoasia",
+    "suno.com": "67",
+    "densankhauhcm.com": "nerhordensankhau",
+    "muse.ai": "tomi"
+  }
+}

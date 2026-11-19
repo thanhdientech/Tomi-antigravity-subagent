@@ -1,0 +1,5 @@
+{
+  "name": "team-skill-curator",
+  "version": "1.0.0",
+  "description": "Team 13 (Săn, Thẩm Định, Tư Vấn & Nạp Repo Skill vào Antigravity): 3 Subagent khép kín từ tìm & kiểm tra repo skill/agent đối chiếu trùng lặp để tư vấn người dùng chọn (skill-repo-scout), quét bảo mật & prompt injection + test FTS5 độc lập (skill-security-qa), đến chuẩn hóa & nạp chuẩn Javis Hybrid Brain (skill-ingestor-builder)."
+}

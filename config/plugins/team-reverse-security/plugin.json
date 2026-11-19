@@ -1,0 +1,12 @@
+{
+  "name": "team-reverse-security",
+  "displayName": "Team 10: Dịch Ngược, Clean-Room & Bảo Mật",
+  "version": "1.0.0",
+  "description": "Đội ngũ nhân sự AI chuyên bóc tách & phân tích phần mềm/nhị phân (REA MCP), tái lập bản sạch Clean-Room (Craft Anything 302 tools) và kiểm toán lỗ hổng bảo mật mã nguồn/Web/API/CLI.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Phân tích kiến trúc và hành vi của ứng dụng (.exe, Electron .asar, APK, Web bundle) bằng REA MCP",
+    "Nghiên cứu cách ứng dụng hoạt động và tái lập lại phiên bản sạch Clean-Room qua Craft Anything",
+    "Rà soát lỗ hổng bảo mật toàn diện cho mã nguồn, API, dịch vụ nền và xuất báo cáo thẩm định"
+  ]
+}

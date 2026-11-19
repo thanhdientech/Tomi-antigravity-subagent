@@ -1,0 +1,54 @@
+# ==============================================================================
+# TOMI ANTIGRAVITY SUBAGENT (14 TEAMS / 51 SUBAGENTS) — GIT SECURITY SHIELD
+# ==============================================================================
+
+# 1. Runtime SQLite WAL FTS5 indexes (auto-rebuilt by setup_portable_antigravity.py)
+agy_skill_index.db
+agy_skill_index.db-wal
+agy_skill_index.db-shm
+*.db
+*.db-wal
+*.db-shm
+
+# 2. Local machine MCP / Hook / OAuth / Env Secrets (NEVER commit!)
+config/mcp_config.json
+config/hooks.json
+config/config.json
+.env
+.env.*
+!.env.example
+*credentials*.json
+*token*.json
+*secret*.json
+cookies.json
+
+# 3. Internal ERP / SAP B1 SQL Credentials & Private Plugins Shield
+config/skills/sql-sap-b1/config.json
+config/skills/sql-sap-b1/scripts/THONG_TIN_KET_NOI_USER_CAC_SERVER.txt
+config/skills/sql-sap-b1/scripts/01_Create_SQL_ReadOnly_Agent_User.sql
+config/skills/sql-sap-b1/scripts/*OpenVPN*
+config/tools/sql_runner.py
+config/plugins/team-antidetect-automator/
+config/team_memory/teams/*/runs/*
+!config/team_memory/teams/*/runs/.gitkeep
+
+# 4. Python, Node.js, Virtual Environments, Backups & Logs
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+node_modules/
+backups/
+*.bak
+*.bak_*
+*.log
+
+# 5. OS, Archives & Binaries
+.DS_Store
+Thumbs.db
+desktop.ini
+*.rar
+*.zip
+*.exe
