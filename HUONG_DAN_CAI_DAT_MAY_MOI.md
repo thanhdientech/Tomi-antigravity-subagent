@@ -55,7 +55,7 @@ winget install -e --id Gyan.FFmpeg
 
 | Nhóm | Thư viện Python | Chức năng |
 | :--- | :--- | :--- |
-| **Lõi bắt buộc** | `pyyaml`, `mcp`, `requests`, `psutil` | Chạy MCP `agy-skill-hub`, phân tích frontmatter Skill/Agent, kiểm tra HTTP 200, giám sát RAM/tiến trình |
+| **Lõi bắt buộc** | `pyyaml`, `mcp`, `requests`, `psutil`, `aiohttp`, `websockets` | Chạy MCP `agy-skill-hub`, phân tích frontmatter Skill/Agent, Bridge điều khiển trình duyệt thật `:8765/:8766`, kiểm tra HTTP 200 |
 | **Dữ liệu & Office** | `pandas`, `openpyxl`, `pillow`, `beautifulsoup4`, `lxml` | Đọc/xuất CSV/Excel/Báo cáo Ads/Kế toán, xử lý ảnh PNG/WebP, kiểm toán HTML/SEO |
 | **VPS & SQL SAP B1** | `paramiko`, `pyodbc`, `sqlalchemy` | SSH/SCP tự động tới Linux VPS (Team 6), kết nối Read-Only tới SQL Server SAP B1 (Team 8) |
 | **YouTube & Tử Vi** | `scrapetube`, `iztro-py` | Quét dữ liệu kênh/video YouTube (`Tim Ngach` Team 12), an sao Tử Vi chuẩn |
@@ -72,6 +72,15 @@ winget install -e --id Gyan.FFmpeg
    - Các bộ tool render nặng (`Tool render edit Video` OmniFlash, `Tim Ngach`, `Shopee_KOL_Studio_Tool`, `Nghien_Cuu_Kenh_Moi_Huong_Dan`) nằm riêng ngoài repo config. Khi sang máy mới, chép thư mục tool vào ổ đĩa (khuyên giữ nguyên cấu trúc) và chạy `pip install` trong `.venv` của từng tool tương ứng.
 3. **Kết nối kho tri thức ngoài (JavisOS / Obsidian Wiki):**
    - Đặt biến môi trường Windows `JAVIS_BRAIN_DIR` trỏ tới thư mục chứa `brains\Brain Default\wiki` để lệnh `team_memory_cli.py --search-wiki "..."` tự động tìm được tài liệu của anh.
+4. **Cài Extension "Antigravity Browser" để 100% 14 Team điều khiển trình duyệt thật (Chrome / Cốc Cốc / Edge):**
+   - Mở `chrome://extensions/` (hoặc `coccoc://extensions/` / `edge://extensions/`) trên từng Profile muốn cho AI điều khiển → bật **Developer mode** → bấm **Load unpacked** → chọn thư mục:
+     `%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\extension`
+   - Bấm icon **Antigravity Browser** đặt tên Profile (vd: `work`, `ads`, `youtube`) → bấm **Lưu**.
+   - Bật Bridge & dò toàn bộ Profile trên máy bằng 1 lệnh:
+     ```powershell
+     python "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scripts\profile_scanner.py" --ensure-bridge
+     python "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scripts\profile_scanner.py" --scan
+     ```
 
 ---
 

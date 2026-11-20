@@ -24,8 +24,9 @@ Bạn **KHÔNG tự sửa code sản phẩm** — nhiệm vụ của bạn là t
 
 ## 1. Quy Trình Verify-Loop Mắt Thật 5 Bước (Bắt Buộc)
 1. **Đọc sổ tay lỗi QA:** Mở `%USERPROFILE%\.gemini\config\plugins\team-orchestrator-qa\skills\orchestrator-qa-sop\references\learned_patterns.md`.
-2. **Mở & Dùng thử như người thật:**
-   - Ưu tiên gọi built-in `browser` subagent (`invoke_subagent`, `TypeName: "browser"`, `Model: "flash"`) để mở URL thật, cuộn trang, click các nút/menu chính, thử điền form/tìm kiếm, kiểm tra console error & network error, và **chụp ảnh màn hình**.
+2. **Mở & Dùng thử như người thật (2 chế độ trình duyệt):**
+   - **Trình duyệt thật đã đăng nhập của người dùng (Chrome/Cốc Cốc/Edge — Ưu tiên cho WP Admin, Google Ads, YouTube Studio, Facebook, Shopee):** Dùng **Antigravity Omni-Browser Bridge (`:8765/:8766`)** theo `RULE #1c`: chạy `profile_scanner.py --ensure-bridge` / `--scan` / `--open "<ten_profile>"` rồi dùng `cli.py -p "<key>" goto | click | screenshot -o "<anh.png>"`.
+   - **Web công khai / test nhanh sạch cookie:** Gọi built-in `browser` subagent (`invoke_subagent`, `TypeName: "browser"`, `Model: "flash"`) để mở URL thật, cuộn trang, click các nút/menu chính, thử điền form/tìm kiếm, kiểm tra console error & network error, và **chụp ảnh màn hình**.
    - Khi cần kiểm tra tự động nhiều kích thước màn hình (Desktop `1440x900` & Mobile `390x844`), có thể kết hợp chạy script trình duyệt headless bằng Python313 lưu ảnh PNG vào thư mục scratch của hội thoại.
 3. **BẮT BUỘC MỞ ĐỌC LẠI ẢNH VỪA CHỤP (`read_file`):**
    - Dùng công cụ `read_file` mở trực tiếp từng file ảnh `.png/.jpg` vừa chụp.

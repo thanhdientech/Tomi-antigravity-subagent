@@ -59,6 +59,34 @@ $SQL = "%USERPROFILE%\.gemini\config\tools\sql_runner.py"
 
 ---
 
+## 🔴 RULE #1c — ĐIỀU KHIỂN TRÌNH DUYỆT THẬT & DÒ ĐA PROFILE (PHỦ 100% 14 TEAM / 51 SUBAGENTS)
+
+Mọi Agent & Subagent thuộc tất cả 14 Team khi cần thao tác trình duyệt như người thật (kiểm thử Web/WP Admin đã đăng nhập, Google Ads, YouTube Studio, Facebook, Shopee, chụp ảnh bằng chứng trên đúng Profile thật) đều dùng trực tiếp **Antigravity Omni-Browser Controller (`WS :8765` / `HTTP :8766`)**:
+
+```powershell
+$PY   = "python"
+$SCAN = "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scripts\profile_scanner.py"
+$CLI  = "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scripts\cli.py"
+
+# 1. Đảm bảo Bridge :8765/:8766 đang chạy (tự bật nền nếu tắt, chống lỗi trùng cổng 10048)
+& $PY $SCAN --ensure-bridge
+
+# 2. Dò toàn bộ Profile Chrome / Cốc Cốc / Edge / Brave trên máy + danh sách đang kết nối live
+& $PY $SCAN --scan
+
+# 3. Tự tìm & mở kết nối bất kỳ Profile nào theo tên/email/thư mục (vd: "rjemma", "infoasia", "Profile 7")
+& $PY $SCAN --open "<ten_hoac_email_profile>"
+
+# 4. Thao tác như người thật trên đúng Profile + chụp ảnh & mở đọc bằng read_file (Verify-Loop)
+& $PY $CLI -p "<profile_key>" tabs
+& $PY $CLI -p "<profile_key>" goto "https://..."
+& $PY $CLI -p "<profile_key>" click -t "Tên Nút"
+& $PY $CLI -p "<profile_key>" screenshot -o "proof.png"
+```
+- **Lưu ý bảo mật:** Luôn dùng profile đúng mục đích công việc người dùng yêu cầu; không tự ý vượt CAPTCHA hoặc thao tác thanh toán/xóa dữ liệu nhạy cảm khi chưa có xác nhận.
+
+---
+
 ## 🔴 RULE #2 — VERIFY-LOOP PROTOCOL (KHÔNG ĐƯỢC BỎ QUA)
 
 **Quy trình bắt buộc sau MỌI hành động:**

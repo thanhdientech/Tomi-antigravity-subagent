@@ -58,6 +58,7 @@ Kỹ năng chuyên sâu điều khiển toàn diện mọi trình duyệt web (C
 │
 └── scripts\                                 # Bộ công cụ điều khiển & Server
     ├── server.py                            # Bridge Server đa luồng (WS :8765 + HTTP :8766)
+    ├── profile_scanner.py                   # Dò mọi Profile Chrome/Cốc Cốc/Edge/Brave, bật Bridge & mở đúng Profile
     ├── start_bridge.bat                     # File kích hoạt server nhanh
     ├── fb_auto_post.py                      # Tool tự động đăng Facebook (Ảnh/Video/Text)
     └── cli.py                               # Bộ lệnh điều khiển terminal đa năng
@@ -65,13 +66,20 @@ Kỹ năng chuyên sâu điều khiển toàn diện mọi trình duyệt web (C
 
 ---
 
-## 3. Hướng Dẫn Sử Dụng Nhanh
+## 3. Hướng Dẫn Sử Dụng Nhanh (Dò & Kết Nối Mọi Profile)
 
-### Bước 1: Khởi động Bridge Server (Chạy nền)
+### Bước 1: Tự động bật Bridge & Dò mọi Profile trên máy tính
 ```powershell
-python "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scripts\server.py"
+# Đảm bảo Bridge :8765/:8766 đang sống (chống lỗi trùng cổng 10048)
+python "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scripts\profile_scanner.py" --ensure-bridge
+
+# Quét tất cả Profile Chrome / Cốc Cốc / Edge / Brave + trạng thái kết nối live
+python "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scripts\profile_scanner.py" --scan
+
+# Mở & kết nối tự động bất kỳ Profile nào theo tên / email / thư mục (vd: "rjemma", "Profile 7")
+python "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scripts\profile_scanner.py" --open "rjemma"
 ```
-*(Hoặc click đúp file `start_bridge.bat`).*
+*(Hoặc click đúp file `start_bridge.bat` để bật Bridge Server).*
 
 ### Bước 2: Nạp Extension vào Chrome / Cốc Cốc / Edge
 1. Mở `chrome://extensions/` (hoặc `coccoc://extensions/`).
