@@ -132,14 +132,21 @@ def ensure_bridge(wait_sec: float = 8.0) -> tuple[bool, dict | None]:
 
 
 def has_antigravity_extension(profile_path: Path) -> bool:
-    pref = profile_path / "Preferences"
-    if not pref.is_file():
-        return False
-    try:
-        raw = pref.read_text(encoding="utf-8", errors="ignore")
-        return ("Antigravity Browser" in raw) or ("antigravity-browser-controller" in raw)
-    except Exception:
-        return False
+    for fname in ("Secure Preferences", "Preferences"):
+        pref = profile_path / fname
+        if not pref.is_file():
+            continue
+        try:
+            raw = pref.read_text(encoding="utf-8", errors="ignore").lower()
+            if (
+                "antigravity browser" in raw
+                or "antigravity-browser-controller" in raw
+                or "antigravity-browser-extension" in raw
+            ):
+                return True
+        except Exception:
+            pass
+    return False
 
 
 def scan_all_profiles() -> dict:

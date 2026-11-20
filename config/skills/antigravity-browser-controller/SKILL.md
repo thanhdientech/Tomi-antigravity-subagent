@@ -59,6 +59,7 @@ Kỹ năng chuyên sâu điều khiển toàn diện mọi trình duyệt web (C
 └── scripts\                                 # Bộ công cụ điều khiển & Server
     ├── server.py                            # Bridge Server đa luồng (WS :8765 + HTTP :8766)
     ├── profile_scanner.py                   # Dò mọi Profile Chrome/Cốc Cốc/Edge/Brave, bật Bridge & mở đúng Profile
+    ├── session_recorder.py                  # Quay phim MP4 ngầm qua Silent CDP + FFmpeg & đẩy cửa sổ xuống nền
     ├── start_bridge.bat                     # File kích hoạt server nhanh
     ├── fb_auto_post.py                      # Tool tự động đăng Facebook (Ảnh/Video/Text)
     └── cli.py                               # Bộ lệnh điều khiển terminal đa năng

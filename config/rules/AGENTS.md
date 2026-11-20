@@ -77,11 +77,15 @@ $CLI  = "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scri
 # 3. Tự tìm & mở kết nối bất kỳ Profile nào theo tên/email/thư mục (vd: "rjemma", "infoasia", "Profile 7")
 & $PY $SCAN --open "<ten_hoac_email_profile>"
 
-# 4. Thao tác như người thật trên đúng Profile + chụp ảnh & mở đọc bằng read_file (Verify-Loop)
+# 4. Thao tác như người thật trên đúng Profile (CHẠY NGẦM 0 cướp chuột/focus) + chụp ảnh & quay phim MP4:
+$REC  = "%USERPROFILE%\.gemini\config\skills\antigravity-browser-controller\scripts\session_recorder.py"
+& $PY $REC send-back --title "Chrome"                                   # Đẩy Chrome chìm sau cửa sổ người dùng (giữ GPU sống, không Minimize)
+& $PY $REC start -p "<profile_key>" -o "session.mp4" --fps 2 --session r1  # Bắt đầu quay phim ngầm MP4 (chỉ quay đúng Tab AI làm)
 & $PY $CLI -p "<profile_key>" tabs
 & $PY $CLI -p "<profile_key>" goto "https://..."
 & $PY $CLI -p "<profile_key>" click -t "Tên Nút"
-& $PY $CLI -p "<profile_key>" screenshot -o "proof.png"
+& $PY $CLI -p "<profile_key>" screenshot -o "proof.png"                 # Chụp Silent CDP không cướp màn hình -> đọc bằng read_file
+& $PY $REC stop --session r1                                            # Dừng quay & tự ghép MP4 bằng FFmpeg
 ```
 - **Lưu ý bảo mật:** Luôn dùng profile đúng mục đích công việc người dùng yêu cầu; không tự ý vượt CAPTCHA hoặc thao tác thanh toán/xóa dữ liệu nhạy cảm khi chưa có xác nhận.
 

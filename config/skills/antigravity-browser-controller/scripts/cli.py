@@ -48,6 +48,7 @@ def check_status():
 def main():
     parser = argparse.ArgumentParser(description="Antigravity Omni-Browser CLI — Điều khiển đa Profile Chrome song song")
     parser.add_argument("--profile", "-p", type=str, default=None, help="Tên hoặc mã Profile cần điều khiển (ví dụ: 67, 24, suno, facebook)")
+    parser.add_argument("--mode", "-m", choices=["silent", "normal"], default="silent", help="Chế độ chạy: silent (chuột ẩn/ngầm, không cướp màn hình) hoặc normal (đưa cửa sổ lên xem trực tiếp)")
     subparsers = parser.add_subparsers(dest="command", help="Lệnh hành động")
 
     # status
@@ -185,14 +186,19 @@ def main():
             print(f"[-] Lỗi JavaScript: {res.get('error')}")
 
     elif args.command == "screenshot":
-        res = call_bridge({"action": "screenshot", "profile": args.profile})
+        res = call_bridge({
+            "action": "screenshot",
+            "profile": args.profile,
+            "focus": (args.mode == "normal"),
+            "format": "jpeg" if str(args.out).lower().endswith((".jpg", ".jpeg")) else "png",
+        })
         if res.get("status") == "ok" and res.get("screenshot"):
             data_url = res["screenshot"]
             header, encoded = data_url.split(",", 1)
             img_data = base64.b64decode(encoded)
             with open(args.out, "wb") as f:
                 f.write(img_data)
-            print(f"[+] [{res.get('profile')}] Đã lưu ảnh chụp màn hình tại: {os.path.abspath(args.out)}")
+            print(f"[+] [{res.get('profile')}] ({res.get('method', args.mode)}) Đã lưu ảnh tại: {os.path.abspath(args.out)}")
         else:
             print(f"[-] Thất bại: {res.get('error')}")
 

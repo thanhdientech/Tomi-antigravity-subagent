@@ -329,32 +329,62 @@ async function handleCommand(cmd) {
           targetTabObj = await getActiveTab();
         }
         const captureTabId = targetTabObj ? targetTabObj.id : tabId;
+        const imgFormat = (cmd.format === "jpeg" || cmd.format === "jpg") ? "jpeg" : "png";
+        const imgQuality = typeof cmd.quality === "number" ? cmd.quality : 80;
+        const wantFocus = cmd.focus === true;
+
+        // If window is minimized, restore GPU surface WITHOUT stealing user focus (focused: false)
         if (targetTabObj && targetTabObj.windowId) {
           try {
-            await chrome.tabs.update(captureTabId, { active: true });
-            await chrome.windows.update(targetTabObj.windowId, { focused: true });
-            await new Promise(r => setTimeout(r, 200));
-            const dataUrl = await chrome.tabs.captureVisibleTab(targetTabObj.windowId, { format: "png" });
-            if (dataUrl) return { status: "ok", screenshot: dataUrl };
+            const winInfo = await chrome.windows.get(targetTabObj.windowId);
+            if (winInfo && winInfo.state === "minimized") {
+              await chrome.windows.update(targetTabObj.windowId, { state: "normal", focused: false });
+              await new Promise(r => setTimeout(r, 250));
+            } else if (wantFocus) {
+              await chrome.windows.update(targetTabObj.windowId, { focused: true });
+              await new Promise(r => setTimeout(r, 150));
+            }
           } catch (e) {}
         }
+
+        // Priority 1: SILENT CDP Page.captureScreenshot (works even when covered by other apps, zero focus steal!)
         try {
           if (!attachedDebuggerTabs.has(captureTabId)) {
             await chrome.debugger.attach({ tabId: captureTabId }, "1.3");
             attachedDebuggerTabs.add(captureTabId);
           }
+          const cdpParams = { format: imgFormat, fromSurface: true };
+          if (imgFormat === "jpeg") cdpParams.quality = imgQuality;
           const cdpRes = await Promise.race([
-            chrome.debugger.sendCommand({ tabId: captureTabId }, "Page.captureScreenshot", { format: "png" }),
-            new Promise((_, rej) => setTimeout(() => rej(new Error("CDP screenshot timeout")), 2500))
+            chrome.debugger.sendCommand({ tabId: captureTabId }, "Page.captureScreenshot", cdpParams),
+            new Promise((_, rej) => setTimeout(() => rej(new Error("CDP screenshot timeout")), 5000))
           ]);
           if (cdpRes && cdpRes.data) {
-            return { status: "ok", screenshot: `data:image/png;base64,${cdpRes.data}` };
+            return {
+              status: "ok",
+              method: "cdp_silent",
+              format: imgFormat,
+              screenshot: `data:image/${imgFormat};base64,${cdpRes.data}`
+            };
           }
-        } catch (cdpErr) {}
+        } catch (cdpErr) {
+          // Detach broken debugger handle so next attempt can re-attach cleanly
+          attachedDebuggerTabs.delete(captureTabId);
+          try { await chrome.debugger.detach({ tabId: captureTabId }); } catch (e) {}
+        }
+
+        // Priority 2: Fallback captureVisibleTab WITHOUT stealing focus (unless wantFocus=true)
+        if (targetTabObj && targetTabObj.windowId) {
+          try {
+            const capOpts = imgFormat === "jpeg" ? { format: "jpeg", quality: imgQuality } : { format: "png" };
+            const dataUrl = await chrome.tabs.captureVisibleTab(targetTabObj.windowId, capOpts);
+            if (dataUrl) return { status: "ok", method: "visible_tab", format: imgFormat, screenshot: dataUrl };
+          } catch (e) {}
+        }
 
         try {
           const dataUrl = await chrome.tabs.captureVisibleTab(null, { format: "png" });
-          return { status: "ok", screenshot: dataUrl };
+          return { status: "ok", method: "visible_tab_fallback", format: "png", screenshot: dataUrl };
         } catch (err) {
           return { status: "error", error: err.message || String(err) };
         }
