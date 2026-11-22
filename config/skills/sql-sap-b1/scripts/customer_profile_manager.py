@@ -1095,7 +1095,7 @@ def call_service_layer(
 ) -> Dict[str, Any]:
     """
     Goi SAP B1 10.0 Service Layer REST API (/b1s/v1/<endpoint>) voi tu dong Login -> Request -> Logout.
-    CHOT CHAN AN TOAN: Chi cho phep goi tren cac profile co allow_service_layer == True (Server Demo <INTERNAL_DB_HOST> <INTERNAL_SQL_SERVER_IP>).
+    CHOT CHAN AN TOAN: Chi cho phep goi tren cac profile co allow_service_layer == True (Server Demo <INTERNAL_DB_HOST> <INTERNAL_SERVER_IP>).
     Neu nguoi dung KHONG noi ro alias (demo / <INTERNAL_DB_HOST> / FVIVN...), tra ve require_clarification=True de Agent hoi ro!
     """
     profile, clarify_err = resolve_profile_strict(customer_key, custom_path)
@@ -1116,7 +1116,7 @@ def call_service_layer(
             "error": (
                 f"CHOT CHAN AN TOAN: He thong '{profile['name']}' (Server {profile['server']} / DB {profile['database']}) "
                 "la Database Khach Hang (Read-Only 100%), KHONG cho phep goi Service Layer. "
-                "Chi duoc phep goi Service Layer tren Server Demo '<INTERNAL_DB_HOST>' (<INTERNAL_SQL_SERVER_IP>:50000)."
+                "Chi duoc phep goi Service Layer tren Server Demo '<INTERNAL_DB_HOST>' (<INTERNAL_SERVER_IP>:50000)."
             ),
         }
 

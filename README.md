@@ -1,7 +1,7 @@
-# 🏛️ README — HỆ THỐNG ĐA TÁC TỬ 14 TEAM (51 SUBAGENTS) ANTIGRAVITY × JAVISOS
+# 🏛️ README — HỆ THỐNG ĐA TÁC TỬ 15 TEAM (55 SUBAGENTS) ANTIGRAVITY × JAVISOS
 
-> **Phiên bản:** `v2.1` · **Cập nhật:** `19/11/2026` · **Vị trí cài đặt trên máy:** `%USERPROFILE%\.gemini\config\`
-> **Quy mô chuẩn hóa:** **14 Phòng Ban (`plugins\team-*`)** · **51 Subagents cố định** · **41 Global Skills chuyên môn** · **4 Workflows tự động** · **Bộ nhớ dài hạn 5 lớp + Hook `SessionStart` & `PreInvocation`**
+> **Phiên bản:** `v2.2` · **Cập nhật:** `22/11/2026` · **Vị trí cài đặt trên máy:** `%USERPROFILE%\.gemini\config\`
+> **Quy mô chuẩn hóa:** **15 Phòng Ban (`plugins\team-*`)** · **55 Subagents cố định** · **41 Global Skills chuyên môn** · **5 Workflows tự động** · **Bộ nhớ dài hạn 5 lớp + Hook `SessionStart` & `PreInvocation`**
 >
 > 🚀 **CÀI SANG MÁY MỚI TRONG 2 PHÚT:** Đọc **[HUONG_DAN_CAI_DAT_MAY_MOI.md](./HUONG_DAN_CAI_DAT_MAY_MOI.md)** *(đủ danh sách phần mềm `winget` & thư viện Python)* → chạy **`CAI_DAT_1_CLICK_WINDOWS.bat`** → chạy **`CAI_THU_VIEN_PYTHON_CHO_SKILLS.bat`** (`requirements.txt`).
 

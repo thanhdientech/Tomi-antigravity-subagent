@@ -2,7 +2,7 @@
 """
 Antigravity Unified MCP Server
 Exposes:
-1. Video Downloader & Deep Scan Engine via Remote Server (http://<INTERNAL_SQL_SERVER_IP>:8088)
+1. Video Downloader & Deep Scan Engine via Remote Server (http://<INTERNAL_SERVER_IP>:8088)
    Focused exclusively on YouTube, Facebook, and TikTok.
 2. Local Video Download & Metadata Extraction Tools (YouTube, Facebook, TikTok)
 3. Omni-Browser Automation Suite (Cốc Cốc, Chrome multi-profile, Facebook auto-posting)
@@ -49,11 +49,11 @@ def log_debug(msg: str):
 
 
 # ==============================================================================
-# SERVER <INTERNAL_SQL_SERVER_IP>:8088 CLIENT & AUTH HELPERS
+# SERVER <INTERNAL_SERVER_IP>:8088 CLIENT & AUTH HELPERS
 # ==============================================================================
 
 def get_server_token(force_refresh: bool = False) -> Optional[str]:
-    """Retrieve or refresh JWT Bearer token for Server <INTERNAL_SQL_SERVER_IP>:8088."""
+    """Retrieve or refresh JWT Bearer token for Server <INTERNAL_SERVER_IP>:8088."""
     global _SERVER_TOKEN, _TOKEN_EXPIRY
     now = time.time()
     if not force_refresh and _SERVER_TOKEN and now < _TOKEN_EXPIRY:
@@ -85,7 +85,7 @@ def get_server_token(force_refresh: bool = False) -> Optional[str]:
 
 
 def call_server_api(endpoint: str, method: str = "GET", payload: Optional[dict] = None, timeout: int = 30) -> dict:
-    """Make authenticated HTTP request to Server <INTERNAL_SQL_SERVER_IP>:8088."""
+    """Make authenticated HTTP request to Server <INTERNAL_SERVER_IP>:8088."""
     token = get_server_token()
     url = f"{SERVER_BASE_URL}{endpoint}"
     headers = {"Content-Type": "application/json"}
@@ -134,14 +134,14 @@ def call_bridge(action_dict: dict, timeout: int = 60) -> dict:
 
 
 # ==============================================================================
-# 1. REMOTE DOWNLOADER SERVER TOOLS (http://<INTERNAL_SQL_SERVER_IP>:8088)
+# 1. REMOTE DOWNLOADER SERVER TOOLS (http://<INTERNAL_SERVER_IP>:8088)
 # Target Platforms: YouTube, Facebook, TikTok (Strictly No Douyin/Ixigua)
 # ==============================================================================
 
 @mcp.tool()
 def server_status() -> str:
     """
-    Kiểm tra trạng thái kết nối tới máy chủ tải video (http://<INTERNAL_SQL_SERVER_IP>:8088).
+    Kiểm tra trạng thái kết nối tới máy chủ tải video (http://<INTERNAL_SERVER_IP>:8088).
     Trả về thông tin tài khoản Admin, số dư Credits, gói cước và độ trễ phản hồi.
     """
     start_t = time.time()
@@ -180,7 +180,7 @@ def server_search_videos(
     mode: str = "keyword"
 ) -> str:
     """
-    Tìm kiếm video trên YouTube, TikTok hoặc Facebook qua máy chủ http://<INTERNAL_SQL_SERVER_IP>:8088.
+    Tìm kiếm video trên YouTube, TikTok hoặc Facebook qua máy chủ http://<INTERNAL_SERVER_IP>:8088.
     
     Args:
         query: Từ khóa tìm kiếm hoặc URL kênh cần quét
@@ -207,7 +207,7 @@ def server_search_videos(
 @mcp.tool()
 def server_deep_scan(url: str, max_comments: int = 20) -> str:
     """
-    Quét sâu video (YouTube, Facebook, TikTok) qua máy chủ http://<INTERNAL_SQL_SERVER_IP>:8088.
+    Quét sâu video (YouTube, Facebook, TikTok) qua máy chủ http://<INTERNAL_SERVER_IP>:8088.
     Bóc tách toàn diện: Tiêu đề chuẩn, kênh, mô tả, từ khóa SEO, toàn văn phụ đề/transcript (.txt/.srt) 
     và danh sách các bình luận hot/tương tác cao nhất.
     
@@ -235,7 +235,7 @@ def server_batch_download(
     download_comments: bool = True
 ) -> str:
     """
-    Khởi chạy tiến trình tải hàng loạt (Batch Download) trên máy chủ http://<INTERNAL_SQL_SERVER_IP>:8088.
+    Khởi chạy tiến trình tải hàng loạt (Batch Download) trên máy chủ http://<INTERNAL_SERVER_IP>:8088.
     Hỗ trợ tải video chất lượng cao (YouTube, Facebook, TikTok) kèm tự động đóng gói ZIP và bóc tách dữ liệu.
     
     Args:
@@ -268,7 +268,7 @@ def server_batch_download(
 @mcp.tool()
 def server_task_status(batch_id: str) -> str:
     """
-    Kiểm tra tiến trình và trạng thái tải của một batch trên máy chủ http://<INTERNAL_SQL_SERVER_IP>:8088.
+    Kiểm tra tiến trình và trạng thái tải của một batch trên máy chủ http://<INTERNAL_SERVER_IP>:8088.
     
     Args:
         batch_id: Mã ID của phiên tải (lấy từ kết quả của server_batch_download)
@@ -280,7 +280,7 @@ def server_task_status(batch_id: str) -> str:
 @mcp.tool()
 def server_download_zip(batch_id: str, save_path: str = "") -> str:
     """
-    Tải file ZIP đóng gói thành phẩm từ máy chủ http://<INTERNAL_SQL_SERVER_IP>:8088 về máy tính client.
+    Tải file ZIP đóng gói thành phẩm từ máy chủ http://<INTERNAL_SERVER_IP>:8088 về máy tính client.
     
     Args:
         batch_id: Mã ID của phiên tải đã hoàn tất (status: 'finished')
@@ -320,7 +320,7 @@ def server_quick_download(
     download_keywords: bool = True
 ) -> str:
     """
-    Tải nhanh 1-chạm một video từ YouTube, Facebook, hoặc TikTok qua máy chủ http://<INTERNAL_SQL_SERVER_IP>:8088.
+    Tải nhanh 1-chạm một video từ YouTube, Facebook, hoặc TikTok qua máy chủ http://<INTERNAL_SERVER_IP>:8088.
     Tự động khởi tạo phiên tải trên server, chờ xử lý xong, tải file ZIP về và giải nén ngay vào thư mục máy tính của Sếp.
     
     Args:

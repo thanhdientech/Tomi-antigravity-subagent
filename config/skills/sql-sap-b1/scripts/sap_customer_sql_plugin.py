@@ -2,7 +2,7 @@
 Plugin: sap-b1-customer-sql
 Quan ly ket noi dong thoi nhieu Server SQL SAP B1 (Mac dinh 100% truy van tren Server 24 -
 Database <INTERNAL_DB_HOST> SAP 10.0 + Service Layer :50000; khi nguoi dung go cu phap /160 hoac /<server>
-thi dinh tuyen sang Server <INTERNAL_SQL_SERVER_IP> hoac server tuong ung), chay truy van SELECT an toan,
+thi dinh tuyen sang Server <INTERNAL_SERVER_IP> hoac server tuong ung), chay truy van SELECT an toan,
 goi SAP Service Layer tren Server 24, tu dong xuat file CSV/XLSX/PDF tai ve 1-click va chay 7 nhom
 bao cao chuan SSMS.
 """

@@ -58,7 +58,46 @@ def cmd_list_teams():
         )
 
 
-def cmd_read_team(team: str):
+def resolve_niche_memory_file(team: str, niche: str, create_if_missing: bool = False) -> Path:
+    safe_niche = re.sub(r"[^a-zA-Z0-9._-]", "_", niche.strip())
+    if not safe_niche:
+        print("ERROR: Tên --niche không hợp lệ.", file=sys.stderr)
+        sys.exit(1)
+    ndir = MEM_ROOT / "teams" / team / "niches" / safe_niche
+    mfile = ndir / "MEMORY.md"
+    if create_if_missing and not mfile.is_file():
+        ndir.mkdir(parents=True, exist_ok=True)
+        mfile.write_text(
+            f"# MEMORY — NGÁCH `{safe_niche}`\n\n"
+            f"- **Team:** `{team}`\n"
+            f"- **Phạm vi cách ly:** Chỉ lưu cấu hình & bài học riêng của ngách `{safe_niche}`.\n\n"
+            f"## Bài Học Tích Lũy Riêng (Learned Patterns)\n",
+            encoding="utf-8",
+        )
+    return mfile
+
+
+def cmd_list_niches(team: str):
+    manifest = load_manifest()
+    if team not in manifest:
+        print(f"ERROR: Unknown team '{team}'. Valid: {', '.join(manifest.keys())}", file=sys.stderr)
+        sys.exit(1)
+    ndir = MEM_ROOT / "teams" / team / "niches"
+    print(f"=== DANH SACH NICHE MEMORY CUA TEAM '{team}' ===")
+    if not ndir.is_dir():
+        print("  (Chưa có thư mục niches/)")
+        return
+    found = sorted(ndir.glob("*/MEMORY.md"))
+    if not found:
+        print("  (Chưa có ngách nào)")
+        return
+    for mf in found:
+        lines = mf.read_text(encoding="utf-8", errors="replace").splitlines()
+        learned = sum(1 for ln in lines if ln.strip().startswith("- `["))
+        print(f"  - {mf.parent.name:42s} | Bai hoc: {learned:2d} | {mf}")
+
+
+def cmd_read_team(team: str, niche: str = ""):
     manifest = load_manifest()
     if team not in manifest:
         print(f"ERROR: Unknown team '{team}'. Valid: {', '.join(manifest.keys())}", file=sys.stderr)
@@ -69,11 +108,27 @@ def cmd_read_team(team: str):
     print(f"=== TEAM CONTEXT: {info['title']} ({team}) ===")
     print(f"Leader : {info['leader']}")
     print(f"Members: {', '.join(info['members'])}")
-    print("\n--- TEAM MEMORY.md ---")
+    print("\n--- TEAM MEMORY.md (DUNG CHUNG) ---")
     if mfile.is_file():
         print(mfile.read_text(encoding="utf-8").strip())
     else:
         print("(Chưa có MEMORY.md)")
+
+    if niche:
+        nfile = resolve_niche_memory_file(team, niche, create_if_missing=False)
+        print(f"\n--- NICHE MEMORY.md ({niche}) ---")
+        if nfile.is_file():
+            print(nfile.read_text(encoding="utf-8").strip())
+        else:
+            print(f"(Chưa có MEMORY.md cho ngách '{niche}' tại {nfile})")
+    else:
+        ndir = tdir / "niches"
+        if ndir.is_dir():
+            niches = sorted(ndir.glob("*/MEMORY.md"))
+            if niches:
+                print("\n--- CAC BO NHO NGACH RIENG (dung --niche <ten> de doc) ---")
+                for nf in niches:
+                    print(f"  • {nf.parent.name} -> {nf}")
 
     runs_dir = tdir / "runs"
     runs = sorted(runs_dir.glob("*.md"), reverse=True)[:3] if runs_dir.is_dir() else []
@@ -151,15 +206,18 @@ def cmd_log_run(team: str, agent: str, task: str, status: str, summary: str, evi
     print(f"OK LOGGED: {out_file}")
 
 
-def cmd_learn(team: str, lesson: str):
+def cmd_learn(team: str, lesson: str, niche: str = ""):
     manifest = load_manifest()
     if team not in manifest:
         print(f"ERROR: Unknown team '{team}'", file=sys.stderr)
         sys.exit(1)
-    mfile = MEM_ROOT / "teams" / team / "MEMORY.md"
-    if not mfile.is_file():
-        print(f"ERROR: Missing {mfile}", file=sys.stderr)
-        sys.exit(1)
+    if niche:
+        mfile = resolve_niche_memory_file(team, niche, create_if_missing=True)
+    else:
+        mfile = MEM_ROOT / "teams" / team / "MEMORY.md"
+        if not mfile.is_file():
+            print(f"ERROR: Missing {mfile}", file=sys.stderr)
+            sys.exit(1)
     clean_lesson = " ".join(lesson.strip().splitlines()).strip()
     existing = mfile.read_text(encoding="utf-8")
     if clean_lesson.lower() in existing.lower():
@@ -222,7 +280,9 @@ def cmd_update_project(name: str, path: str, team: str, status: str, next_step: 
 def main():
     p = argparse.ArgumentParser(description="INFOASIA Team Memory & Javis Wiki Bridge CLI")
     p.add_argument("--list-teams", action="store_true", help="Liệt kê 11 Team & thống kê memory")
+    p.add_argument("--list-niches", metavar="TEAM", help="Liệt kê các MEMORY.md riêng theo ngách của Team")
     p.add_argument("--read", metavar="TEAM", help="Đọc MEMORY.md, tài liệu ghim và runs gần nhất của Team")
+    p.add_argument("--niche", default="", help="Tên ngách riêng (vd: 02_Ngach_KosmosGeist_Sleep_Science_US) cho --read / --learn")
     p.add_argument("--search-wiki", metavar="QUERY", help="Tìm nhanh trong kho JavisOS wiki/ & sources/")
     p.add_argument("--limit", type=int, default=8, help="Số kết quả tìm kiếm tối đa")
     p.add_argument("--log-run", metavar="TEAM", help="Ghi nhật ký chạy vào teams/<TEAM>/runs/")
@@ -231,7 +291,7 @@ def main():
     p.add_argument("--status", default="PASS")
     p.add_argument("--summary", default="")
     p.add_argument("--evidence", default="")
-    p.add_argument("--learn", metavar="TEAM", help="Lưu bài học thực chiến vào teams/<TEAM>/MEMORY.md")
+    p.add_argument("--learn", metavar="TEAM", help="Lưu bài học thực chiến vào teams/<TEAM>/MEMORY.md (hoặc niches/<NICHE>/MEMORY.md khi có --niche)")
     p.add_argument("--agent-read", metavar="AGENT", help="Đọc bộ nhớ riêng agents/<AGENT>/MEMORY.md")
     p.add_argument("--agent-learn", metavar="AGENT", help="Lưu bài học riêng vào agents/<AGENT>/MEMORY.md")
     p.add_argument("--lesson", default="")
@@ -244,8 +304,10 @@ def main():
 
     if args.list_teams:
         cmd_list_teams()
+    elif args.list_niches:
+        cmd_list_niches(args.list_niches)
     elif args.read:
-        cmd_read_team(args.read)
+        cmd_read_team(args.read, args.niche)
     elif args.agent_read:
         cmd_agent_read(args.agent_read)
     elif args.search_wiki:
@@ -256,7 +318,7 @@ def main():
         if not args.lesson:
             print("ERROR: Thiếu --lesson", file=sys.stderr)
             sys.exit(1)
-        cmd_learn(args.learn, args.lesson)
+        cmd_learn(args.learn, args.lesson, args.niche)
     elif args.agent_learn:
         if not args.lesson:
             print("ERROR: Thiếu --lesson", file=sys.stderr)

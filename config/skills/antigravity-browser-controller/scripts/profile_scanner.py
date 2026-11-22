@@ -236,6 +236,8 @@ def open_profile(query: str, browser_filter: str = "", wait_sec: float = 12.0) -
         print(f"[NOT_FOUND] Khong tim thay profile nao khop '{query}'. Hay chay --scan de xem danh sach.", file=sys.stderr)
         return 2
 
+    # Prioritize profiles that already have Antigravity Browser extension installed & exact matches
+    matches.sort(key=lambda p: (not p["ext_installed"], p["browser"] != "chrome", p["profile_dir"]))
     target = matches[0]
     if not target["exe"]:
         print(f"[ERROR] Khong tim thay file thuc thi cho trinh duyet {target['browser_name']}.", file=sys.stderr)

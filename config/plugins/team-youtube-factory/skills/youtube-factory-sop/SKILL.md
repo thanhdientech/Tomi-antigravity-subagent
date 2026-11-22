@@ -41,19 +41,38 @@ Toàn bộ các ngách tại `E:\DIEN APP\Xây Kênh Youtube\` (Ngách 01 `01_Ng
   - Python venv: `E:\DIEN APP\Xây Kênh Youtube\Tool render edit Video\.venv\Scripts\python.exe`
   - Scripts chính: `omniflash\youtube\flow_batch.py`, `omniflash.youtube.flow_ui_batch`, `omniflash\youtube\flow_tts.py`, `omniflash\FlowMusic_Auto\flowmusic_batch.py`, `omniflash\youtube\qa_audio_sync_merge.py`, `omniflash\youtube\super_merge.py`
 
-## 3. Bộ Nhớ Dài Hạn Theo Team & Từng Ngách
-- Bộ nhớ Team 12: `%USERPROFILE%\.gemini\config\team_memory\teams\team-youtube-factory\MEMORY.md`
-- Hồ sơ từng Ngách: `%USERPROFILE%\.gemini\config\team_memory\teams\team-youtube-factory\niches\`
-  - `01_khao_co_huyen_thoai_us.md` (3 kênh: Every Myth Explained, Before Us Decoded, Relics & Myths Forensics)
-  - `02_kosmosgeist_sleep_science_us.md` (3 kênh: KosmosGeist, NeuroDrift, QuantumSlumber)
-- Tra cứu & ghi bài học bằng `team_memory_cli.py`:
+## 3. Bộ Nhớ Dài Hạn Cách Ly Từng Ngách (`MEMORY.md` Riêng — Cấm Trộn Ngách)
+- **Bộ nhớ chung hạ tầng Team 12 (CHỈ lưu luật dùng chung `.venv`/CWD):** `%USERPROFILE%\.gemini\config\team_memory\teams\team-youtube-factory\MEMORY.md`
+- **Bộ nhớ `MEMORY.md` riêng từng Ngách (trùng tên thư mục ngách trên ổ `E:`):**
+  - `niches\01_Ngach_Khao_Co_Va_Huyen_Thoai_US\MEMORY.md` (3 kênh: Every Myth Explained, Before Us Decoded, Relics & Myths Forensics)
+  - `niches\02_Ngach_KosmosGeist_Sleep_Science_US\MEMORY.md` (3 kênh: KosmosGeist, NeuroDrift, QuantumSlumber)
+  - *(Ngách mới `03_Ngach_...` tự tạo `niches\<TEN_NGACH>\MEMORY.md` khi truyền `--niche`)*
+- **Tra cứu & ghi bài học đúng Ngách bằng `team_memory_cli.py`:**
   ```powershell
   $PY = "python"
   $CLI = "%USERPROFILE%\.gemini\config\tools\team_memory_cli.py"
-  & $PY $CLI --read team-youtube-factory
-  & $PY $CLI --learn team-youtube-factory --lesson "..."
+  & $PY $CLI --list-niches team-youtube-factory
+  & $PY $CLI --read team-youtube-factory --niche 02_Ngach_KosmosGeist_Sleep_Science_US
+  & $PY $CLI --learn team-youtube-factory --niche 02_Ngach_KosmosGeist_Sleep_Science_US --lesson "..."
   ```
 
 ## 4. Đa Luồng An Toàn
 - **Song song thoải mái:** Có thể chạy 2–4 bản sao `yt-content-writer` hoặc `yt-prompt-director` cho các video/kênh khác nhau (mỗi video 1 thư mục `src\Video\<STT>_<Ten>\` riêng).
 - **Tuần tự / tách Profile khi Render:** Bước `yt-omniflash-renderer` giữ `threads: 2` (hoặc Wave-of-3 cho UI batch), `tts_threads: 4` (giảm xuống `2` nếu 429), và KHÔNG dùng chung 1 `flow_profile` cho 2 tiến trình render Google Flow cùng lúc.
+
+## 5. Cổng Khóa Cứng Tự Động (Zero-Defect Render & Audit Gate — Bắt Buộc 100% Tập Mới)
+Mọi tập video sản xuất bởi Team 12 bắt buộc đi qua **2 Cổng Tự Động (`Exit code 0`)** + **1 Cổng Mắt Thật Độc Lập** (dùng Python313 `python`):
+1. **Cổng 1 — Pre-Render Hard Gate (Chặn trước khi tốn credit Veo/TTS/Suno):**
+   ```powershell
+   & $PY "E:\DIEN APP\Xây Kênh Youtube\Tool render edit Video\omniflash\youtube\qa_gate_youtube_factory.py" --video-dir "<Video_Dir>" --stage pre-render
+   ```
+   *(Chặn lệch số cảnh, thiếu Host `uid01`, trống Hook `B8`, ký tự ngoại lai Hán/Hindi, rác thẻ, câu quá dài).*
+2. **Render Khóa Giọng + Thumbnail + Master Không Cắt Cụt:**
+   - `flow_tts.py` đã tích hợp `[CHANNEL VOICE LOCK]` tự đọc `channel_config.json` của chính kênh đó (không bao giờ lấy nhầm giọng kênh anh em).
+   - Phủ chữ Hook chuẩn `1920x1080` PNG thật & tự đồng bộ gói SEO bằng `omniflash\youtube\render_thumbnail_hooks.py --video-dir "<Video_Dir>"`.
+   - `render_suno_bgm_and_single_voice_master.py` đã tích hợp **Zero Audio Truncation + Multi-Angle Optical Split + Auto Tail-Guard (`|MP4-SRT| <= 0.45s`)** và xuất thẳng sạch vào `FINAL/` + `GOI_UPLOAD_YOUTUBE_CHUAN_SEO_2026/` (không tạo rác `src/Video/.../FINAL/`).
+3. **Cổng 2 — Post-Render Hard Gate + Independent Visual Eye Audit (`yt-production-qa`):**
+   ```powershell
+   & $PY "E:\DIEN APP\Xây Kênh Youtube\Tool render edit Video\omniflash\youtube\qa_gate_youtube_factory.py" --video-dir "<Video_Dir>" --stage post-render
+   ```
+   *(Chặn sai Voice ID, lệch `|MP4-SRT| > 0.5s`, biến thiên `< 25s` với tập trước, sai SHA-256 SEO, lệch Chapters `> 2.0s`, còn sót file cũ/backup/`.md` thừa trong gói SEO; bắt buộc kèm `read_file` soi mắt thật 6/6 Thumbnail & 4 Frame MP4 trước khi ký Grade A/B).*

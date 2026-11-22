@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-sync_to_git_repo.py (v2.1 — 14 Teams / 51 Subagents Public-Safe Portable Syncer)
+sync_to_git_repo.py (v2.2 — 15 Teams / 55 Subagents Public-Safe Portable Syncer)
 Đồng bộ sạch từ `C:\Users\INFOASIA\.gemini\config` sang repo Git (mặc định `E:\DIEN APP\Tomi-antigravity-subagent`
 hoặc truyền `--target <duong_dan_repo>`):
-  1. Đồng bộ 14 Team Plugins (51 Subagents), 41 Global Skills, rules/, docs/, tools/team_memory_cli.py,
-     workflows/*.py (4 pipelines), 7 scripts lõi, và khung mẫu team_memory/ (14 teams + 51 agents).
+  1. Đồng bộ 15 Team Plugins (55 Subagents), Global Skills, rules/, docs/, tools/team_memory_cli.py,
+     workflows/*.py (5 pipelines), 7 scripts lõi, và khung mẫu team_memory/ (15 teams + 55 agents).
   2. Chặn tuyệt đối plugin nội bộ (`team-antidetect-automator`), `tools/sql_runner.py`, `runs/`, `*.db`, `*.bak*`, `*.exe`.
-  3. Khử cá nhân hóa & lọc sạch 100% mật khẩu SQL, IP LAN nội bộ, tên DB nội bộ, đường dẫn máy cá nhân cho repo PUBLIC.
+  3. Khử cá nhân hóa & lọc sạch 100% mật khẩu SQL, IP LAN/WAN nội bộ, tên DB nội bộ, đường dẫn máy cá nhân cho repo PUBLIC.
   4. Tự động chạy Security Secret Scanner trước khi kết thúc (Exit code 1 nếu phát hiện lọt bất kỳ secret nào).
 """
 from __future__ import annotations
@@ -185,7 +185,7 @@ def build_clean_team_memory_templates(src_mem: Path, dst_mem: Path) -> int:
     count = 0
 
     (dst_mem / "COMPANY_MEMORY.md").write_text(
-        "# COMPANY MEMORY — ANTIGRAVITY 14 TEAMS (51 SUBAGENTS)\n\n"
+        "# COMPANY MEMORY — ANTIGRAVITY 15 TEAMS (55 SUBAGENTS)\n\n"
         "- **Workspace chuẩn:** `%USERPROFILE%\\.gemini\\config`\n"
         "- **Nguyên tắc cốt lõi:** 5 Chốt Chặn Chống Ảo Giác + QA Gate (`Exit code 0`) + Verify-Loop Chụp & Đọc Ảnh + No Self-Grading.\n"
         "- **Ghi chú:** Chỉnh sửa file này để lưu quy tắc nội bộ, tech stack và cấu hình riêng của máy bạn.\n",
@@ -218,6 +218,8 @@ def build_clean_team_memory_templates(src_mem: Path, dst_mem: Path) -> int:
         data = json.loads(manifest_src.read_text(encoding="utf-8"))
         clean_manifest = {}
         for team_name, info in data.items():
+            if team_name in EXCLUDED_PLUGINS:
+                continue
             clean_manifest[team_name] = {
                 "title": info.get("title", team_name),
                 "leader": info.get("leader", ""),
@@ -232,23 +234,29 @@ def build_clean_team_memory_templates(src_mem: Path, dst_mem: Path) -> int:
         )
         count += 1
 
+        PRESERVE_MEMORY_TEAMS = {"team-javisos-n8n"}
         for team_name, info in clean_manifest.items():
+            if team_name in EXCLUDED_PLUGINS:
+                continue
             t_dir = dst_mem / "teams" / team_name
             (t_dir / "runs").mkdir(parents=True, exist_ok=True)
             (t_dir / "runs" / ".gitkeep").write_text("", encoding="utf-8")
-            (t_dir / "MEMORY.md").write_text(
-                f"# TEAM MEMORY — {team_name}\n\n"
-                f"- **Trưởng nhóm (`LEADER`):** `{info['leader']}`\n"
-                f"- **Thành viên:** {', '.join(f'`{m}`' for m in info['members'])}\n\n"
-                f"## Bài học tích lũy (Learned Patterns)\n"
-                f"- *(Tự động bổ sung qua `team_memory_cli.py --learn {team_name} --lesson \"...\"`)*\n",
-                encoding="utf-8",
-            )
+            src_t_dir = src_mem / "teams" / team_name
+            if team_name in PRESERVE_MEMORY_TEAMS and (src_t_dir / "MEMORY.md").is_file():
+                copy_and_sanitize_file(src_t_dir / "MEMORY.md", t_dir / "MEMORY.md", sanitize=True)
+            else:
+                (t_dir / "MEMORY.md").write_text(
+                    f"# TEAM MEMORY — {team_name}\n\n"
+                    f"- **Trưởng nhóm (`LEADER`):** `{info['leader']}`\n"
+                    f"- **Thành viên:** {', '.join(f'`{m}`' for m in info['members'])}\n\n"
+                    f"## Bài học tích lũy (Learned Patterns)\n"
+                    f"- *(Tự động bổ sung qua `team_memory_cli.py --learn {team_name} --lesson \"...\"`)*\n",
+                    encoding="utf-8",
+                )
             count += 1
 
-            # Copy helpful static team templates (upstream_registry.json, archetypes_13_channels.md)
-            src_t_dir = src_mem / "teams" / team_name
-            for extra in ["upstream_registry.json", "archetypes_13_channels.md"]:
+            # Copy helpful static team templates (upstream_registry.json, archetypes_13_channels.md, instances_dual_javis_n8n.md)
+            for extra in ["upstream_registry.json", "archetypes_13_channels.md", "instances_dual_javis_n8n.md"]:
                 if (src_t_dir / extra).is_file():
                     copy_and_sanitize_file(src_t_dir / extra, t_dir / extra, sanitize=True)
                     count += 1
@@ -256,13 +264,17 @@ def build_clean_team_memory_templates(src_mem: Path, dst_mem: Path) -> int:
             for member in info["members"]:
                 a_dir = dst_mem / "agents" / member
                 a_dir.mkdir(parents=True, exist_ok=True)
-                (a_dir / "MEMORY.md").write_text(
-                    f"# AGENT MEMORY — {member}\n\n"
-                    f"- **Phòng ban:** `{team_name}`\n\n"
-                    f"## Kinh nghiệm & Chống lặp lỗi\n"
-                    f"- *(Tự động bổ sung qua `team_memory_cli.py --agent-learn {member} --lesson \"...\"`)*\n",
-                    encoding="utf-8",
-                )
+                src_a_mem = src_mem / "agents" / member / "MEMORY.md"
+                if team_name in PRESERVE_MEMORY_TEAMS and src_a_mem.is_file():
+                    copy_and_sanitize_file(src_a_mem, a_dir / "MEMORY.md", sanitize=True)
+                else:
+                    (a_dir / "MEMORY.md").write_text(
+                        f"# AGENT MEMORY — {member}\n\n"
+                        f"- **Phòng ban:** `{team_name}`\n\n"
+                        f"## Kinh nghiệm & Chống lặp lỗi\n"
+                        f"- *(Tự động bổ sung qua `team_memory_cli.py --agent-learn {member} --lesson \"...\"`)*\n",
+                        encoding="utf-8",
+                    )
                 count += 1
 
     return count
@@ -300,11 +312,11 @@ def main() -> int:
 
     dst_repo = Path(args.target)
     dst_config = dst_repo / "config"
-    print(f"[SYNC v2.1] Source: {SRC_CONFIG}")
-    print(f"[SYNC v2.1] Target: {dst_repo}")
+    print(f"[SYNC v2.2] Source: {SRC_CONFIG}")
+    print(f"[SYNC v2.2] Target: {dst_repo}")
     dst_config.mkdir(parents=True, exist_ok=True)
 
-    print("\n[1/8] Syncing config/skills/ (41 active domain skills)...")
+    print("\n[1/8] Syncing config/skills/ (active domain skills)...")
     n_skills = sync_dir_clean(
         SRC_CONFIG / "skills",
         dst_config / "skills",
@@ -313,7 +325,7 @@ def main() -> int:
     )
     print(f"  OK -> {n_skills} files synced in config/skills/")
 
-    print("\n[2/8] Syncing config/plugins/ (14 Teams / 51 Subagents + official plugins)...")
+    print("\n[2/8] Syncing config/plugins/ (15 Teams / 55 Subagents + official plugins)...")
     dst_plugins = dst_config / "plugins"
     if dst_plugins.exists():
         shutil.rmtree(dst_plugins)
@@ -361,7 +373,7 @@ def main() -> int:
             copy_and_sanitize_file(s_file, dst_scripts / name, sanitize=(name != "sync_to_git_repo.py"))
     print(f"  OK -> {len(ACTIVE_SCRIPTS)} active scripts synced")
 
-    print("\n[6/8] Syncing portable config/tools/ & config/workflows/ (4 pipelines)...")
+    print("\n[6/8] Syncing portable config/tools/ & config/workflows/ (5 pipelines)...")
     dst_tools = dst_config / "tools"
     if dst_tools.exists():
         shutil.rmtree(dst_tools)
@@ -378,7 +390,7 @@ def main() -> int:
         wf_count += 1
     print(f"  OK -> team_memory_cli.py & {wf_count} workflows built in portable mode (sql_runner.py excluded)")
 
-    print("\n[7/8] Building clean template config/team_memory/ (14 teams + 51 agents)...")
+    print("\n[7/8] Building clean template config/team_memory/ (15 teams + 55 agents)...")
     n_mem = build_clean_team_memory_templates(SRC_CONFIG / "team_memory", dst_config / "team_memory")
     print(f"  OK -> {n_mem} clean memory template files generated (0 personal runs)")
 

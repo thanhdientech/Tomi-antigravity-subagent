@@ -8,7 +8,7 @@ Tất cả các máy chủ (`Con 24`, `Con 52`, `Con 160`, `Con 27` và các má
 - **Quyền Windows Server:** `Standard Limited User` (Nhóm: `Users`, `Performance Monitor Users`, `Event Log Readers`).
 - **Riêng Con 24 (`<INTERNAL_DB_HOST>` - SAP 10.0):**
   - Kết nối SQL vẫn dùng `<YOUR_RO_USER>` (`Read-Only 100%`, không dùng `sa`).
-  - Kết nối ghi dữ liệu vào SAP B1 đi qua **SAP Service Layer (`https://<INTERNAL_SQL_SERVER_IP>:50000/b1s/v1`)** bằng tài khoản SAP **`manager` / `12341234`** (`HTTP 200`).
+  - Kết nối ghi dữ liệu vào SAP B1 đi qua **SAP Service Layer (`https://<INTERNAL_SERVER_IP>:50000/b1s/v1`)** bằng tài khoản SAP **`manager` / `12341234`** (`HTTP 200`).
 
 ---
 
@@ -16,10 +16,10 @@ Tất cả các máy chủ (`Con 24`, `Con 52`, `Con 160`, `Con 27` và các má
 
 | Server | IP / Máy Chủ / SQL Instance | Công Ty & Phiên Bản SAP | Danh Sách Database Đã Mở (`HasAccess = 1`) |
 | :--- | :--- | :--- | :--- |
-| **[A] Con 24** | IP: **`<INTERNAL_SQL_SERVER_IP>`**<br>Machine/SQL: `INFOASIASAP24` | Infoasia Demo Company<br>(SAP B1 10.0 Ver 1000330 + Beas + Service Layer `:50000`) | **10 DB:** `<INTERNAL_DB_HOST>` *(Default DB)*, `<INTERNAL_DB_HOST>_train`, `FUDA`, `FVIVN_GO_BK`, `<INTERNAL_SAP_DB>_BK`, `Infoasia_Periodic_Inventory`, `Infoasia_USA`, `e_office`, `GLaccount`, `SBO-COMMON` |
-| **[B] Con 52** | IP: **`<INTERNAL_SQL_SERVER_IP>`**<br>Machine: `PENFLEX-VN-VM`<br>SQL: `WIN-TTRG9UMG3IU` | PENFLEX VIETNAM CO.,LTD<br>(SAP B1 9.3 Ver 930100 + Beas) | **1 DB chính:** `PenflexPRD_NEW` *(Default DB)* |
-| **[C] Con 160** | IP: **`<INTERNAL_SQL_SERVER_IP>`**<br>Machine/SQL: `INFOASIASAP03` | FREUDENBERG & VILENE INTERNATIONAL VIETNAM<br>(SAP B1 9.3 + Beas) | **6 DB:**<br>1. `FVIVN_GoLive_2024` (`/160 hcm`)<br>2. `<INTERNAL_SAP_DB>` (`/160 lt`, *Default DB*)<br>3. `<INTERNAL_SAP_DB_TRAIN>` (`/160`)<br>4. `SBO-COMMON`<br>5. `Z_FVIV_PROD_0H0308`<br>6. `ZTEST_HCM_772026` |
-| **[D] Con 27** | IP: **`<INTERNAL_SQL_SERVER_IP>`** *(RDP `:4227`)*<br>Machine: `DATAHTL`<br>SQL: `WIN-4QNMP6LH9HI` | DATAHTL / HTL FURNITURE VIETNAM<br>(SQL Server 2016 SP2 Enterprise + OpenVPN `HTL_VPN`) | **2 DB:**<br>1. `ECC` (`/27 ecc`, *Default DB*)<br>2. `HTL_DEMO` (`/27 htl`) |
+| **[A] Con 24** | IP: **`<INTERNAL_SERVER_IP>`**<br>Machine/SQL: `INFOASIASAP24` | Infoasia Demo Company<br>(SAP B1 10.0 Ver 1000330 + Beas + Service Layer `:50000`) | **10 DB:** `<INTERNAL_DB_HOST>` *(Default DB)*, `<INTERNAL_DB_HOST>_train`, `FUDA`, `FVIVN_GO_BK`, `<INTERNAL_SAP_DB>_BK`, `Infoasia_Periodic_Inventory`, `Infoasia_USA`, `e_office`, `GLaccount`, `SBO-COMMON` |
+| **[B] Con 52** | IP: **`<INTERNAL_SERVER_IP>`**<br>Machine: `PENFLEX-VN-VM`<br>SQL: `WIN-TTRG9UMG3IU` | PENFLEX VIETNAM CO.,LTD<br>(SAP B1 9.3 Ver 930100 + Beas) | **1 DB chính:** `PenflexPRD_NEW` *(Default DB)* |
+| **[C] Con 160** | IP: **`<INTERNAL_SERVER_IP>`**<br>Machine/SQL: `INFOASIASAP03` | FREUDENBERG & VILENE INTERNATIONAL VIETNAM<br>(SAP B1 9.3 + Beas) | **6 DB:**<br>1. `FVIVN_GoLive_2024` (`/160 hcm`)<br>2. `<INTERNAL_SAP_DB>` (`/160 lt`, *Default DB*)<br>3. `<INTERNAL_SAP_DB_TRAIN>` (`/160`)<br>4. `SBO-COMMON`<br>5. `Z_FVIV_PROD_0H0308`<br>6. `ZTEST_HCM_772026` |
+| **[D] Con 27** | IP: **`<INTERNAL_SERVER_IP>`** *(RDP `:4227`)*<br>Machine: `DATAHTL`<br>SQL: `WIN-4QNMP6LH9HI` | DATAHTL / HTL FURNITURE VIETNAM<br>(SQL Server 2016 SP2 Enterprise + OpenVPN `HTL_VPN`) | **2 DB:**<br>1. `ECC` (`/27 ecc`, *Default DB*)<br>2. `HTL_DEMO` (`/27 htl`) |
 
 ---
 
@@ -50,6 +50,6 @@ Khi người dùng gửi câu lệnh SQL yêu cầu viết mới, thêm cột, t
 2. [`01_Create_SQL_ReadOnly_Agent_User.sql`](file:///e:/DIEN%20APP/JavisOS/create%20user/01_Create_SQL_ReadOnly_Agent_User.sql): Script T-SQL tự động tạo Login/User `<YOUR_RO_USER>` chỉ đọc dữ liệu (`REVOKE CONTROL`, `GRANT CONNECT`, `db_datareader`, `db_denydatawriter`, `DENY INSERT, UPDATE, DELETE, ALTER, EXECUTE`) trên tất cả User Database của Con 24, Con 52, Con 160, Con 27.
 3. [`02_Create_Windows_Limited_Agent_User.ps1`](file:///e:/DIEN%20APP/JavisOS/create%20user/02_Create_Windows_Limited_Agent_User.ps1): Script PowerShell tạo User Windows `<YOUR_RO_USER>` thuộc nhóm `Users`, `Performance Monitor Users`, `Event Log Readers`.
 4. [`03_Run_All_OneClick_Setup.bat`](file:///e:/DIEN%20APP/JavisOS/create%20user/03_Run_All_OneClick_Setup.bat): Chạy 1-click (`Run as administrator`) để thiết lập đồng thời cả Windows User và SQL User.
-5. [`04_Setup_Con27_ECC_HTL_And_OpenVPN.ps1`](file:///e:/DIEN%20APP/JavisOS/create%20user/04_Setup_Con27_ECC_HTL_And_OpenVPN.ps1): Script PowerShell chống Timeout & tự động kết nối lại OpenVPN (`HTL_VPN`) mỗi 1 phút qua Task Scheduler `InfoAsia_OpenVPN_AutoWatchdog_1Min` trên Con 27 (`<INTERNAL_SQL_SERVER_IP>`).
+5. [`04_Setup_Con27_ECC_HTL_And_OpenVPN.ps1`](file:///e:/DIEN%20APP/JavisOS/create%20user/04_Setup_Con27_ECC_HTL_And_OpenVPN.ps1): Script PowerShell chống Timeout & tự động kết nối lại OpenVPN (`HTL_VPN`) mỗi 1 phút qua Task Scheduler `InfoAsia_OpenVPN_AutoWatchdog_1Min` trên Con 27 (`<INTERNAL_SERVER_IP>`).
 6. [`04_Run_Con27_AntiTimeout_OpenVPN.bat`](file:///e:/DIEN%20APP/JavisOS/create%20user/04_Run_Con27_AntiTimeout_OpenVPN.bat): File `.bat` chạy nhanh thiết lập chống Timeout OpenVPN trên Con 27.
 7. [`HUONG_DAN_TAO_USER_SQL_VA_WINDOWS_DUNG_CHUNG.md`](file:///e:/DIEN%20APP/JavisOS/create%20user/HUONG_DAN_TAO_USER_SQL_VA_WINDOWS_DUNG_CHUNG.md): Tài liệu hướng dẫn chi tiết từng bước.

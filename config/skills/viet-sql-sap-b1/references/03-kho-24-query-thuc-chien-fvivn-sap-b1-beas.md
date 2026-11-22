@@ -9,7 +9,7 @@ updated: "2026-10-18"
 
 # Kho 24 Câu Lệnh SQL Thực Chiến FVIVN (SAP B1 9.3 & Beas Manufacturing)
 
-Tài liệu này tổng hợp toàn bộ **24 câu lệnh SQL thực chiến** trích xuất từ hệ thống SSMS của khách hàng **FVI Việt Nam (`SYNC_<INTERNAL_SAP_DB>_SSMS`)**, áp dụng cho cả 2 Database trên máy chủ `<INTERNAL_SQL_SERVER_IP>`:
+Tài liệu này tổng hợp toàn bộ **24 câu lệnh SQL thực chiến** trích xuất từ hệ thống SSMS của khách hàng **FVI Việt Nam (`SYNC_<INTERNAL_SAP_DB>_SSMS`)**, áp dụng cho cả 2 Database trên máy chủ `<INTERNAL_SERVER_IP>`:
 - **`FVIVN_HCM` (`FVIVN_GoLive_2024`)**: Công ty FVI Việt Nam tại TP.HCM.
 - **`FVIVN_LT` (`<INTERNAL_SAP_DB>`)**: Chi nhánh FVI Việt Nam tại Long Thành.
 

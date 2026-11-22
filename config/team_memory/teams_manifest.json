@@ -7,7 +7,6 @@
       "solution-architect",
       "blueprint-spec-validator"
     ],
-    "pinned_paths": [],
     "roles": {
       "blueprint-interviewer": "MEMBER",
       "solution-architect": "LEADER",
@@ -16,7 +15,8 @@
     "auditors": [
       "qa-code-tester",
       "qa-ifixai-auditor"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-orchestrator-qa": {
     "title": "Team 1: Điều Phối Chống Ảo Giác & QA Đa Tầng",
@@ -27,7 +27,6 @@
       "qa-visual-human-tester",
       "qa-ifixai-auditor"
     ],
-    "pinned_paths": [],
     "roles": {
       "orchestrator-planner": "LEADER",
       "qa-code-tester": "INDEPENDENT_AUDITOR",
@@ -38,7 +37,8 @@
       "qa-code-tester",
       "qa-visual-human-tester",
       "qa-ifixai-auditor"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-web-wordpress-seo": {
     "title": "Team 2: Web, WordPress, Landing Page & SEO",
@@ -49,7 +49,6 @@
       "web-seo-geo-specialist",
       "web-performance-auditor"
     ],
-    "pinned_paths": [],
     "roles": {
       "web-wp-builder": "LEADER",
       "web-landingpage-coder": "MEMBER",
@@ -58,7 +57,8 @@
     },
     "auditors": [
       "web-performance-auditor"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-design-creative": {
     "title": "Team 3: Design, Thương Hiệu & UI/UX",
@@ -69,7 +69,6 @@
       "design-visual-asset-creator",
       "design-ux-cro-auditor"
     ],
-    "pinned_paths": [],
     "roles": {
       "design-brand-identity": "MEMBER",
       "design-ui-ux-architect": "LEADER",
@@ -78,7 +77,8 @@
     },
     "auditors": [
       "design-ux-cro-auditor"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-video-film-channel": {
     "title": "Team 4: Phim AI, Biên Kịch & Xây Kênh MXH",
@@ -89,7 +89,6 @@
       "film-studio-producer",
       "channel-growth-automation"
     ],
-    "pinned_paths": [],
     "roles": {
       "film-scriptwriter": "LEADER",
       "film-prompt-director": "MEMBER",
@@ -99,7 +98,8 @@
     "auditors": [
       "qa-code-tester",
       "qa-ifixai-auditor"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-video-editing-motion": {
     "title": "Team 5: Edit Video, Motion & Hậu Kỳ",
@@ -110,7 +110,6 @@
       "video-tutorial-producer",
       "video-qa-verifier"
     ],
-    "pinned_paths": [],
     "roles": {
       "video-editor-ffmpeg": "LEADER",
       "video-motion-coder": "MEMBER",
@@ -119,7 +118,8 @@
     },
     "auditors": [
       "video-qa-verifier"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-server-vps-hosting": {
     "title": "Team 6: Server, VPS & Hosting",
@@ -130,7 +130,6 @@
       "infra-directadmin-hosting",
       "infra-qa-security-verifier"
     ],
-    "pinned_paths": [],
     "roles": {
       "infra-linux-vps": "LEADER",
       "infra-windows-server": "MEMBER",
@@ -139,7 +138,8 @@
     },
     "auditors": [
       "infra-qa-security-verifier"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-web-research": {
     "title": "Team 7: Tra Cứu & Kiểm Chứng Thông Tin Web",
@@ -149,7 +149,6 @@
       "web-fact-checker",
       "web-synthesis-editor"
     ],
-    "pinned_paths": [],
     "roles": {
       "web-search-scout": "LEADER",
       "web-fact-checker": "INDEPENDENT_AUDITOR",
@@ -157,7 +156,8 @@
     },
     "auditors": [
       "web-fact-checker"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-sap-b1-sql": {
     "title": "Team 8: ERP SAP B1, Beas & Kế Toán SQL",
@@ -167,7 +167,6 @@
       "sap-sql-developer",
       "sap-accounting-auditor"
     ],
-    "pinned_paths": [],
     "roles": {
       "sap-b1-architect": "LEADER",
       "sap-sql-developer": "MEMBER",
@@ -175,7 +174,8 @@
     },
     "auditors": [
       "sap-accounting-auditor"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-marketing-ads": {
     "title": "Team 9: Marketing, Quảng Cáo & Sản Phẩm Số",
@@ -185,7 +185,6 @@
       "ads-performance-specialist",
       "mkt-copy-offer-creator"
     ],
-    "pinned_paths": [],
     "roles": {
       "mkt-persona-strategist": "LEADER",
       "ads-performance-specialist": "MEMBER",
@@ -194,7 +193,8 @@
     "auditors": [
       "qa-code-tester",
       "qa-ifixai-auditor"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-reverse-security": {
     "title": "Team 10: Dịch Ngược, Clean-Room & Bảo Mật",
@@ -204,7 +204,6 @@
       "rev-cleanroom-builder",
       "sec-vulnerability-auditor"
     ],
-    "pinned_paths": [],
     "roles": {
       "rev-binary-analyst": "LEADER",
       "rev-cleanroom-builder": "MEMBER",
@@ -212,7 +211,8 @@
     },
     "auditors": [
       "sec-vulnerability-auditor"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-youtube-factory": {
     "title": "Team 12: Nhà Máy YouTube Đa Ngách (Tim Ngach Radar + OmniFlash)",
@@ -224,7 +224,6 @@
       "yt-omniflash-renderer",
       "yt-production-qa"
     ],
-    "pinned_paths": [],
     "roles": {
       "yt-niche-radar": "LEADER",
       "yt-content-writer": "MEMBER",
@@ -234,7 +233,8 @@
     },
     "auditors": [
       "yt-production-qa"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-skill-curator": {
     "title": "Team 13: Săn, Kiểm Tra, Tư Vấn & Nạp Repo Skill vào Antigravity",
@@ -244,7 +244,6 @@
       "skill-ingestor-builder",
       "skill-security-qa"
     ],
-    "pinned_paths": [],
     "roles": {
       "skill-repo-scout": "LEADER",
       "skill-ingestor-builder": "MEMBER",
@@ -252,7 +251,8 @@
     },
     "auditors": [
       "skill-security-qa"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-short-video-affiliate": {
     "title": "Team 14: Nhà Máy Video Ngắn 9:16 Facebook Reels & Tiếp Thị Liên Kết Shopee",
@@ -263,7 +263,6 @@
       "short-kol-studio-producer",
       "short-video-qa-auditor"
     ],
-    "pinned_paths": [],
     "roles": {
       "short-channel-product-scout": "LEADER",
       "short-script-storyboarder": "MEMBER",
@@ -272,7 +271,8 @@
     },
     "auditors": [
       "short-video-qa-auditor"
-    ]
+    ],
+    "pinned_paths": []
   },
   "team-javisos-n8n": {
     "title": "Team 15: Build AI Agent JavisOS (Tomi & InfoAsia), Training Chống Bịa & n8n (VPS 42.29)",
@@ -283,7 +283,6 @@
       "n8n-workflow-engineer",
       "javis-n8n-qa-auditor"
     ],
-    "pinned_paths": [],
     "roles": {
       "javis-architect-builder": "LEADER",
       "javis-anti-hallucination-trainer": "MEMBER",
@@ -292,6 +291,7 @@
     },
     "auditors": [
       "javis-n8n-qa-auditor"
-    ]
+    ],
+    "pinned_paths": []
   }
 }

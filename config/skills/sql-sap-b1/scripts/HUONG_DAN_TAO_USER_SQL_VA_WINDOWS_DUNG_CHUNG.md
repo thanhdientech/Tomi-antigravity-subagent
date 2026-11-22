@@ -6,7 +6,7 @@ Tất cả các máy chủ (`Con 24`, `Con 52`, `Con 160` và các máy chủ m�
 - **Password dùng chung (cả SQL & Windows):** `<YOUR_RO_PASSWORD>`
 - **Riêng Con 24 (`<INTERNAL_DB_HOST>` - SAP 10.0):**
   - Kết nối SQL vẫn dùng `<YOUR_RO_USER>` (`Read-Only 100%`, không dùng `sa`).
-  - Kết nối ghi dữ liệu vào SAP B1 đi qua **SAP Service Layer (`https://<INTERNAL_SQL_SERVER_IP>:50000/b1s/v1`)** bằng tài khoản SAP **`manager`**.
+  - Kết nối ghi dữ liệu vào SAP B1 đi qua **SAP Service Layer (`https://<INTERNAL_SERVER_IP>:50000/b1s/v1`)** bằng tài khoản SAP **`manager`**.
 - **Các máy còn lại (`Con 52`, `Con 160` - SAP 9.3):**
   - Chạy **100% Read-Only SQL (`<YOUR_RO_USER>`)**, khóa cứng `INSERT`, `UPDATE`, `DELETE`, `ALTER`, `EXEC`.
 
@@ -14,12 +14,12 @@ Tất cả các máy chủ (`Con 24`, `Con 52`, `Con 160` và các máy chủ m�
 
 ## 1. Danh Sách File Trong `%JAVIS_BRAIN_DIR%\create user\` & Trạng Thái Kiểm Thử
 
-- **Con 24 (`<INTERNAL_SQL_SERVER_IP>` - Máy `INFOASIASAP24`, DB `<INTERNAL_DB_HOST>` - `Infoasia Demo Company`, SAP 10.0 + Beas):**
+- **Con 24 (`<INTERNAL_SERVER_IP>` - Máy `INFOASIASAP24`, DB `<INTERNAL_DB_HOST>` - `Infoasia Demo Company`, SAP 10.0 + Beas):**
   - **SQL Read-Only (`<YOUR_RO_USER>`):** Đã test kết nối & truy vấn `SELECT` thành công 100% (`HasAccess = 1` trên `<INTERNAL_DB_HOST>`) + **SAP Service Layer (`:50000`)** `connected (HTTP 200)`.
   - **Windows User (`<YOUR_RO_USER>`) & mở rộng các DB phụ trên Con 24:** Chạy file `03_Run_All_OneClick_Setup.bat` (`Run as administrator`) hoặc chạy lệnh PowerShell/SQL ở Mục 2.A bên dưới.
-- **Con 52 (`<INTERNAL_SQL_SERVER_IP>` - Máy `WIN-TTRG9UMG3IU` / `PENFLEX-VN-VM`, DB `PenflexPRD_NEW` - `PENFLEX VIETNAM CO.,LTD`, SAP 9.3 + Beas):**
+- **Con 52 (`<INTERNAL_SERVER_IP>` - Máy `WIN-TTRG9UMG3IU` / `PENFLEX-VN-VM`, DB `PenflexPRD_NEW` - `PENFLEX VIETNAM CO.,LTD`, SAP 9.3 + Beas):**
   - **Đã hoàn tất 100% cả Windows User & SQL Read-Only User `<YOUR_RO_USER>` / `<YOUR_RO_PASSWORD>`** (`HasAccess = 1`, chặn cứng `UPDATE` với `Error 229`).
-- **Con 160 (`<INTERNAL_SQL_SERVER_IP>` - Máy `INFOASIASAP03`, SAP 9.3 + Beas):**
+- **Con 160 (`<INTERNAL_SERVER_IP>` - Máy `INFOASIASAP03`, SAP 9.3 + Beas):**
   - **Đã test thành công 100%** trên `FVIVN_GoLive_2024` (`/160 hcm`) và `<INTERNAL_SAP_DB>` (`/160 lt`) (`HasAccess = 1`). Riêng `<INTERNAL_SAP_DB_TRAIN>` chạy thêm Mục 2.C bên dưới.
 
 Danh sách 5 file trong thư mục **`%JAVIS_BRAIN_DIR%\create user\`**:
@@ -33,7 +33,7 @@ Danh sách 5 file trong thư mục **`%JAVIS_BRAIN_DIR%\create user\`**:
 
 ## 2. Câu Lệnh Rút Gọn Tạo Trên Con 24, Con 52, Con 160
 
-### A. Chạy trên Con 24 (`<INTERNAL_SQL_SERVER_IP>` - `INFOASIASAP24` - Database `<INTERNAL_DB_HOST>`)
+### A. Chạy trên Con 24 (`<INTERNAL_SERVER_IP>` - `INFOASIASAP24` - Database `<INTERNAL_DB_HOST>`)
 
 **Bước 1 — Tạo Windows User `<YOUR_RO_USER>` (Mở PowerShell `Run as Administrator` trên Con 24):**
 ```powershell
@@ -80,7 +80,7 @@ GO
 
 ---
 
-### B. Chạy trên Con 52 (`<INTERNAL_SQL_SERVER_IP>` - Database `PenflexPRD_NEW`) *(Đã chạy & test thành công 100%)*
+### B. Chạy trên Con 52 (`<INTERNAL_SERVER_IP>` - Database `PenflexPRD_NEW`) *(Đã chạy & test thành công 100%)*
 ```sql
 USE [master];
 GO
@@ -109,7 +109,7 @@ GO
 
 ---
 
-### C. Chạy bổ sung trên Con 160 (`<INTERNAL_SQL_SERVER_IP>` - Cấp thêm quyền cho Database `<INTERNAL_SAP_DB_TRAIN>`)
+### C. Chạy bổ sung trên Con 160 (`<INTERNAL_SERVER_IP>` - Cấp thêm quyền cho Database `<INTERNAL_SAP_DB_TRAIN>`)
 ```sql
 USE [<INTERNAL_SAP_DB_TRAIN>];
 GO

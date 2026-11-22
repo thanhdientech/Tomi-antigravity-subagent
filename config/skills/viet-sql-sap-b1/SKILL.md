@@ -91,15 +91,15 @@ Khi người dùng yêu cầu viết câu lệnh SQL, FMS, hoặc Stored Procedu
 ## 3. Quy Trình Bắt Buộc: Định Tuyến Cú Pháp, Quản Lý Session & Thoát Session
 
 ### 3.1. Bảng Cú Pháp & Quy Tắc Mặc Định Bất Biến
-- **MẶC ĐỊNH TOÀN HỆ THỐNG (Khi hỏi tự do / không có tiền tố `/`):** 100% trỏ vào **Con 24 (`<INTERNAL_SQL_SERVER_IP>` - Database `<INTERNAL_DB_HOST>`)**. Cấm tự động chuyển sang Con 160 hay Con 52 khi câu hỏi hiện tại không có tiền tố chỉ định.
+- **MẶC ĐỊNH TOÀN HỆ THỐNG (Khi hỏi tự do / không có tiền tố `/`):** 100% trỏ vào **Con 24 (`<INTERNAL_SERVER_IP>` - Database `<INTERNAL_DB_HOST>`)**. Cấm tự động chuyển sang Con 160 hay Con 52 khi câu hỏi hiện tại không có tiền tố chỉ định.
 - **Danh sách Cú pháp 4 Server & 19 Database đã mở (`HasAccess = 1`):**
-  1. **Hỏi tự do hoặc `/24` (MẶC ĐỊNH):** Con 24 (`<INTERNAL_SQL_SERVER_IP>` - `INFOASIASAP24`, SAP 10.0 + Beas): Database chính **`<INTERNAL_DB_HOST>`**, các DB phụ: `<INTERNAL_DB_HOST>_train`, `FUDA`, `FVIVN_GO_BK`, `<INTERNAL_SAP_DB>_BK`, `Infoasia_Periodic_Inventory`, `Infoasia_USA`, `e_office`, `GLaccount`, `SBO-COMMON`.
-  2. **Cú pháp `/160`:** Con 160 (`<INTERNAL_SQL_SERVER_IP>` - `INFOASIASAP03`, SAP 9.3 + Beas): Database **`<INTERNAL_SAP_DB_TRAIN>`**.
-  3. **Cú pháp `/160 HCM`:** Con 160 (`<INTERNAL_SQL_SERVER_IP>`): Database **`FVIVN_GoLive_2024`**.
-  4. **Cú pháp `/160 LT`:** Con 160 (`<INTERNAL_SQL_SERVER_IP>`): Database **`<INTERNAL_SAP_DB>`**.
-  5. **Cú pháp `/52`:** Con 52 (`<INTERNAL_SQL_SERVER_IP>` - `WIN-TTRG9UMG3IU`, SAP 9.3 + Beas): Database **`PenflexPRD_NEW`**.
-  6. **Cú pháp `/27` hoặc `/27 ECC`:** Con 27 (`<INTERNAL_SQL_SERVER_IP>` - `DATAHTL`, SQL 2016): Database **`ECC`**.
-  7. **Cú pháp `/27 HTL`:** Con 27 (`<INTERNAL_SQL_SERVER_IP>`): Database **`HTL_DEMO`**.
+  1. **Hỏi tự do hoặc `/24` (MẶC ĐỊNH):** Con 24 (`<INTERNAL_SERVER_IP>` - `INFOASIASAP24`, SAP 10.0 + Beas): Database chính **`<INTERNAL_DB_HOST>`**, các DB phụ: `<INTERNAL_DB_HOST>_train`, `FUDA`, `FVIVN_GO_BK`, `<INTERNAL_SAP_DB>_BK`, `Infoasia_Periodic_Inventory`, `Infoasia_USA`, `e_office`, `GLaccount`, `SBO-COMMON`.
+  2. **Cú pháp `/160`:** Con 160 (`<INTERNAL_SERVER_IP>` - `INFOASIASAP03`, SAP 9.3 + Beas): Database **`<INTERNAL_SAP_DB_TRAIN>`**.
+  3. **Cú pháp `/160 HCM`:** Con 160 (`<INTERNAL_SERVER_IP>`): Database **`FVIVN_GoLive_2024`**.
+  4. **Cú pháp `/160 LT`:** Con 160 (`<INTERNAL_SERVER_IP>`): Database **`<INTERNAL_SAP_DB>`**.
+  5. **Cú pháp `/52`:** Con 52 (`<INTERNAL_SERVER_IP>` - `WIN-TTRG9UMG3IU`, SAP 9.3 + Beas): Database **`PenflexPRD_NEW`**.
+  6. **Cú pháp `/27` hoặc `/27 ECC`:** Con 27 (`<INTERNAL_SERVER_IP>` - `DATAHTL`, SQL 2016): Database **`ECC`**.
+  7. **Cú pháp `/27 HTL`:** Con 27 (`<INTERNAL_SERVER_IP>`): Database **`HTL_DEMO`**.
   8. **Cú pháp `/exit` / `/out` / `/reset`:** Thoát khỏi session hiện tại, thông báo đã thoát và quay về mặc định Con 24 `<INTERNAL_DB_HOST>`.
 
 ### 3.2. Chốt Chặn Quản Lý Session & Thông Báo Thoát Session Bắt Buộc (Session Exit Gate)
