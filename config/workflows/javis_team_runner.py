@@ -37,6 +37,7 @@ TEAM_AUDITORS = {
     "team-youtube-factory": "yt-production-qa",
     "team-skill-curator": "skill-security-qa",
     "team-short-video-affiliate": "short-video-qa-auditor",
+    "team-javisos-n8n": "javis-n8n-qa-auditor",
 }
 
 team = args.get("team", "")

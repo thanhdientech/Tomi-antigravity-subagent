@@ -32,7 +32,7 @@ mcp = MCPServer("antigravity-tools")
 
 # Configuration constants
 BRIDGE_HTTP_URL = os.environ.get("BROWSER_BRIDGE_URL", "http://127.0.0.1:8766")
-SERVER_BASE_URL = os.environ.get("DOWNLOADER_SERVER_URL", "http://202.43.110.175:8088")
+SERVER_BASE_URL = os.environ.get("DOWNLOADER_SERVER_URL", "http://<PUBLIC_VPS_WAN_IP>:8088")
 SERVER_ADMIN_USER = os.environ.get("DOWNLOADER_ADMIN_USER", "admin")
 SERVER_ADMIN_PASS = os.environ.get("DOWNLOADER_ADMIN_PASS", "Infoasia@2025%")
 DEFAULT_DOWNLOAD_DIR = os.environ.get("DOWNLOAD_DIR", r"E:\DIEN APP\Skill AI\downloads")

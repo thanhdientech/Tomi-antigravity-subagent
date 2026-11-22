@@ -69,8 +69,8 @@ Khi người dùng chọn **Lệnh `6`** hoặc yêu cầu tạo kênh mới (Yo
    - (5) Chế độ Nhân vật (`Mode A: Fixed Host UID01.png` / `Mode B: Dynamic Cast` / `Mode C: 100% Hostless`)?
    - (6) Phong cách Hình ảnh (`2D/3D Cartoon`, `Photorealistic 8K`, `3D Cutaway`...)?
 2. **Bước 6.2 — Chạy Công Cụ Săn "Ngách Ngon" Ra Số Liệu Thật:**
-   - **Với YouTube:** Chạy **Tool 2 (`http://202.43.110.175:15000/` — YT Niche Radar `mcp_server.py`)**: Quét `ytradar_scan_niches`/`ytradar_scan_csv` tìm ngách có tỷ lệ Đại dương xanh cao $\rightarrow$ Quét `ytradar_scan_channel_videos` tìm Top Video Outlier (`Views/Subs >= 3x`) $\rightarrow$ Tải bản chép lời (`ytradar_fetch_transcript`) và phân tích bình luận (`ytradar_analyze_comments`) tìm `Content Requests`.
-   - **Với Facebook:** Chạy **Tool 3 (`http://202.43.110.175:8088/` — MCP `antigravity-tools`)**: Quét `server_search_videos` & `server_deep_scan` tìm video viral $\rightarrow$ Tải video & bản chép lời `.srt`/`.txt` qua `server_batch_download`/`server_quick_download`.
+   - **Với YouTube:** Chạy **Tool 2 (`http://<PUBLIC_VPS_WAN_IP>:15000/` — YT Niche Radar `mcp_server.py`)**: Quét `ytradar_scan_niches`/`ytradar_scan_csv` tìm ngách có tỷ lệ Đại dương xanh cao $\rightarrow$ Quét `ytradar_scan_channel_videos` tìm Top Video Outlier (`Views/Subs >= 3x`) $\rightarrow$ Tải bản chép lời (`ytradar_fetch_transcript`) và phân tích bình luận (`ytradar_analyze_comments`) tìm `Content Requests`.
+   - **Với Facebook:** Chạy **Tool 3 (`http://<PUBLIC_VPS_WAN_IP>:8088/` — MCP `antigravity-tools`)**: Quét `server_search_videos` & `server_deep_scan` tìm video viral $\rightarrow$ Tải video & bản chép lời `.srt`/`.txt` qua `server_batch_download`/`server_quick_download`.
 3. **Bước 6.3 — Nhân Bản Thư Mục Template & Xây Dựng `Channel_Branding`:**
    - Copy `E:\DIEN APP\Xây Kênh Youtube\_TEMPLATE_KENH_MOI_A_TO_Z\` thành `E:\DIEN APP\Xây Kênh Youtube\<Ten_Kenh_Moi>\`.
    - Tạo thiết bị ảo + gắn Proxy trên **Tool 1 (`Anti-Detect Social Automator`)**.

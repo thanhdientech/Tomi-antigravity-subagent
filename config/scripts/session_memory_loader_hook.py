@@ -39,6 +39,7 @@ def read_stdin() -> dict:
 def detect_team_from_workspaces(workspaces: list[str]) -> str:
     joined = " ".join(str(w).lower() for w in workspaces)
     rules = [
+        (["javisos", "javis-os", "infoasia_ai_agent", "n8n"], "team-javisos-n8n"),
         (["sap", "sql", "beas", "erp"], "team-sap-b1-sql"),
         (["htdocs", "wordpress", "flatsome", "landing", "web"], "team-web-wordpress-seo"),
         (["tiep thi lien ke shoppe", "shopee_kol_studio", "nghien_cuu_kenh_moi", "shopee affiliate", "reels"], "team-short-video-affiliate"),

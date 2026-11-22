@@ -67,6 +67,7 @@ Gõ `/` trong khung chat rồi chọn:
 | **Team 12** | `team-youtube-factory` | `yt-niche-radar` | `yt-content-writer`, `yt-prompt-director`, `yt-omniflash-renderer` | `yt-production-qa` | *"Gọi Team 12 quét ngách Tim Ngach hoặc sản xuất video OmniFlash cho kênh..."* |
 | **Team 13** | `team-skill-curator` | `skill-repo-scout` | `skill-ingestor-builder` | `skill-security-qa` | *"Gọi Team 13 tìm/check repo skill GitHub & tư vấn nạp vào Antigravity"* |
 | **Team 14** | `team-short-video-affiliate` | `short-channel-product-scout` | `short-script-storyboarder`, `short-kol-studio-producer` | `short-video-qa-auditor` | *"Gọi Team 14 làm video ngắn 9:16 Facebook Reels / Shopee Affiliate theo 13 kênh mẫu"* |
+| **Team 15** | `team-javisos-n8n` | `javis-architect-builder` | `javis-anti-hallucination-trainer`, `n8n-workflow-engineer` | `javis-n8n-qa-auditor` | *"Gọi Team 15 chỉnh sửa/training chống bịa Javis InfoAsia (:7778) / Tomi (:7777) hoặc làm workflow n8n (:5678/:5679)"* |
 
 ### 🧭 Sơ Đồ 3 Tầng Điều Phối Viên (Nhớ Nhanh)
 - **Tầng 1 (Tổng Chỉ Huy):** Khung chat chính (Agent chính) nhận lệnh trực tiếp từ anh và tự định tuyến theo `RULE #7`.
