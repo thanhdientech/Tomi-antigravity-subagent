@@ -1,5 +1,23 @@
 {
   "schema_version": "1.0",
   "description": "Sổ theo dõi các Repo Skill đã kiểm định & nạp vào Antigravity bởi Team 13 (team-skill-curator).",
-  "ingested_repos": []
+  "ingested_repos": [
+    {
+      "slug": "yt-growth-optimizer",
+      "upstream_url": "https://github.com/jakeschincariol/youtube-agent-skill",
+      "license": "MIT",
+      "stars_at_ingest": 7259,
+      "ingested_at": "2026-11-24",
+      "slot": "team-plugin-skill",
+      "target_path": "plugins/team-youtube-factory/skills/yt-growth-optimizer",
+      "integrated_agents": [
+        "yt-niche-radar",
+        "yt-content-writer",
+        "yt-prompt-director",
+        "yt-production-qa"
+      ],
+      "security_audit": "PASS (0 shell/exec, 0 network, 0 credential reads, 0 prompt injection across 24 files)",
+      "notes": "Patched all 6 Python scripts for Windows utf-8-sig and unified scripts/ directory imports; adapted playbooks to Antigravity Team 12."
+    }
+  ]
 }

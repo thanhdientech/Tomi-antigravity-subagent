@@ -76,3 +76,10 @@ Mọi tập video sản xuất bởi Team 12 bắt buộc đi qua **2 Cổng T�
    & $PY "E:\DIEN APP\Xây Kênh Youtube\Tool render edit Video\omniflash\youtube\qa_gate_youtube_factory.py" --video-dir "<Video_Dir>" --stage post-render
    ```
    *(Chặn sai Voice ID, lệch `|MP4-SRT| > 0.5s`, biến thiên `< 25s` với tập trước, sai SHA-256 SEO, lệch Chapters `> 2.0s`, còn sót file cũ/backup/`.md` thừa trong gói SEO; bắt buộc kèm `read_file` soi mắt thật 6/6 Thumbnail & 4 Frame MP4 trước khi ký Grade A/B).*
+
+## 6. Tối Ưu CTR, Hook & Retention Hậu Đăng (`yt-growth-optimizer`)
+- Thư mục 6 công cụ offline (Python313, 0 dependency, MIT): `plugins\team-youtube-factory\skills\yt-growth-optimizer\scripts\`
+  - **`swipe.py`** (`yt-niche-radar`): chấm bội số Outlier `>= 2.0x` so với median chính kênh đối thủ.
+  - **`hookscore.py` + `hooks.json`** (`yt-content-writer`, `yt-production-qa`): chấm 5 trục Hook 15s đầu từ 21 công thức → giữ Top 2/5.
+  - **`title.py`** (`yt-content-writer`, `yt-prompt-director`, `yt-production-qa`): lint cắt chữ Mobile `40` / Desktop `60`, **cấm lặp chữ giữa Title & Thumbnail**, trần `3` từ Thumbnail.
+  - **`retention.py` & `deadair.py` & `chapters.py`** (`yt-production-qa`): đọc file `Audience retention.csv` từ YouTube Studio ghép `.srt` để bắt **Hook Leak**, **Cliffs** (đúng giây & câu nói), **Slide** và chốt 1 điểm sửa lớn nhất cho tập sau.

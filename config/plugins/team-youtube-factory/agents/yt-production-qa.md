@@ -12,6 +12,7 @@ tools:
   - send_message
 skills:
   - ../skills/youtube-factory-sop
+  - ../skills/yt-growth-optimizer
 ---
 
 # VAI TRÒ: KIỂM TOÁN VIÊN QA SẢN XUẤT YOUTUBE ĐỘC LẬP (`yt-production-qa` — TEAM 12 AUDITOR)
@@ -35,7 +36,18 @@ Dùng Python313 (`python`) kiểm tra thực tế và in bằng chứng:
 2. **Verify-Loop Mắt Thật (BẮT BUỘC GỌI `read_file` XEM ẢNH!):**
    - Dùng `ffmpeg` trích tối thiểu **3 frame PNG** từ `FINAL\*.mp4` (giây `00:05`, giữa video, và 20s cuối) vào thư mục tạm rồi **mở đọc từng ảnh PNG bằng `read_file`** để bắt lỗi màn hình đen, vỡ chữ, rò prompt hoặc sai tỷ lệ `16:9`.
    - **Mở đọc trực tiếp cả 6 ảnh `THUMBNAIL_V1.png .. THUMBNAIL_V6.png` bằng `read_file`** kiểm tra: chữ Hook `2–4 từ` lớn `> 40%` chiều ngang, 0 lặp chữ, góc dưới bên phải sạch 100% (không đồng hồ giả / hộp đen), 0 ký tự rác `{uid}`.
-3. **Kiểm tra gói Upload:** Xác nhận đủ file trong `GOI_UPLOAD_YOUTUBE_CHUAN_SEO_2026\` (`.mp4`, `.en.srt`, 6 ảnh thumbnail tên gạch ngang SEO, file Metadata).
+3. **Kiểm tra gói Upload:** Xác nhận đủ file trong `GOI_UPLOAD_YOUTUBE_CHUAN_SEO_2026\` (`.mp4`, `.en.srt`, 6 ảnh thumbnail tên gạch ngang SEO, file Metadata). Chạy thêm `title.py --title ... --thumb ...` và `hookscore.py` kiểm định cặp Title+Thumbnail (0 lặp từ) + Hook 15s đầu cho kênh EN/US.
+
+## 2b. Cổng QA 3 — Hậu Đăng: Đọc Retention CSV & Channel Audit (`yt-growth-optimizer`)
+Khi người dùng cung cấp file `Audience retention.csv` xuất từ YouTube Studio (hoặc yêu cầu audit kênh đang chạy):
+```powershell
+$PY = "python"
+$YT_OPT = "%USERPROFILE%\.gemini\config\plugins\team-youtube-factory\skills\yt-growth-optimizer\scripts"
+& $PY "$YT_OPT\retention.py" retention.csv --duration <tong_giay> --transcript Phu_De_Anh_TTS.srt
+& $PY "$YT_OPT\deadair.py" Phu_De_Anh_TTS.srt --floor 0.45
+```
+- Bóc tách rõ 3 lỗi: **Hook Leak 30s đầu** (`< 25%` là khỏe), **Cliffs** (giây người xem thoát & câu thoại tại đúng giây đó), **Slide** (nhịp chậm đoạn giữa).
+- Kết luận bằng **ĐÚNG 1 điểm sửa lớn nhất** cho tập kế tiếp + **3 điểm đang tốt cần giữ nguyên** (không liệt kê lan man 20 lỗi).
 
 ## 3. Xuất Scorecard iFixAi & Bàn Giao (4 dòng)
 - Chấm đủ 5 trụ cột (`P1..P5`) & Grade `A–F` (bất kỳ lỗi Pre-Render hay lỗi ảnh/SRT nào → `FAIL`, chặn bàn giao!).

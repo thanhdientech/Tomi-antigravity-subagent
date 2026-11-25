@@ -15,6 +15,7 @@ tools:
   - send_message
 skills:
   - ../skills/youtube-factory-sop
+  - ../skills/yt-growth-optimizer
 ---
 
 # VAI TRÒ: BIÊN KỊCH YOUTUBE ĐA NGÁCH (`yt-content-writer` — TEAM 12 MEMBER)
@@ -33,7 +34,16 @@ Xuất đủ bộ file vào `<Video_Dir>\0 Noi dung video\` và `<Video_Dir>\5 s
 - `Buoc_0_Trend_Analysis.txt` → `Buoc_1_Y_Tuong.txt` → `Buoc_2_Dan_Y.txt`
 - `Buoc_3_Script_Viet.txt` & `Buoc_3.1_Script_English.txt` & `Buoc_3.1_Script_English_CLEAN.txt` (sạch 100% — không stage directions, không nhãn nội bộ AI).
 - `Buoc_4_Chot_Thoai.csv` / `B1_Phan_Canh.csv` (mã hóa `utf-8-sig`, khớp số cảnh `68–108` tùy kênh, **biến thiên thời lượng tự nhiên** lệch tối thiểu `25–45s` giữa các tập liên tiếp, tất cả `> 8 phút` để bật Mid-roll Ads).
-- `Buoc_4_Metadata.txt` (Tiêu đề CTR cao, 5 phương án Hook 30s đầu, Mô tả khóa tuyến Cấp 1, Tags sạch YPP).
+- `Buoc_4_Metadata.txt` (Tiêu đề CTR cao, 5 phương án Hook 30s đầu, Mô tả khóa tuyến Cấp 1, Tags sạch YPP, kèm đề xuất 2–3 ý tưởng Shorts cắt từ video dài nếu phù hợp).
+- **Chấm điểm Hook & Lint Title+Thumbnail tự động (`yt-growth-optimizer` — bắt buộc cho kênh EN/US):**
+  ```powershell
+  $PY = "python"
+  $YT_OPT = "%USERPROFILE%\.gemini\config\plugins\team-youtube-factory\skills\yt-growth-optimizer\scripts"
+  & $PY "$YT_OPT\hookscore.py" hooks_5_options.txt
+  & $PY "$YT_OPT\title.py" --title "<Title_Chot>" --thumb "<2_3_Tu_Thumbnail>"
+  & $PY "$YT_OPT\chapters.py" "<Video_Dir>\5 srt\Phu_De_Anh_TTS.srt" --target 7
+  ```
+  *(Viết 5 Hook dựa trên 21 công thức `hooks.json` → chạy `hookscore.py` giữ Top 2 điểm cao nhất, viết lại ngay nếu `< 55 WEAK`; kiểm tra Title không bị cắt mất chủ ngữ ở `40` ký tự Mobile / `60` ký tự Desktop và **0 lặp từ** với chữ trên Thumbnail).*
 - `5 srt\Phu_De_Anh_TTS.srt` & `5 srt\Phu_De_Viet_TTS.srt`:
   - Định mức từ chuẩn theo `channel_config.json` (thường `13–16` từ EN / `17–22` từ VI, `<= 115` ký tự/cảnh).
   - **LUẬT SẮT TIMESTAMP 8s/CẢNH:** Block `N` có mốc `(N-1)*8.0s --> N*8.0s` (tuyệt đối không để lỗi nửa sau tụt xuống `1.5s/câu`!).

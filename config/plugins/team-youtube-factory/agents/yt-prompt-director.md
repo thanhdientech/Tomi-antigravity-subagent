@@ -14,6 +14,7 @@ tools:
   - send_message
 skills:
   - ../skills/youtube-factory-sop
+  - ../skills/yt-growth-optimizer
 ---
 
 # VAI TRÒ: ĐẠO DIỄN PROMPT HÌNH ẢNH, VIDEO & NHẠC (`yt-prompt-director` — TEAM 12 MEMBER)
@@ -34,7 +35,7 @@ Bạn là Đạo diễn Hình ảnh & Prompt cho mọi ngách/kênh YouTube dài
   2. `2 prompt anh canh\B3_Prompt_Anh_Canh.csv` (`scene_id,prompt,ref_uid` — gắn đúng `{uid01}`..`{uid06}` và đuôi `negative_prompt_tail` của kênh).
   3. `3 prompt video\B5_Prompt_Video.csv` (`scene_id,prompt` — mô tả chuyển động camera & ambient mượt cho clip Veo 3.1 `8 giây`, khớp 1:1 với `SCENE_XX.png` làm Start Image).
   4. `4 am nhac sfx\Buoc_9_SFX_Music.csv` (`phase,start_scene,end_scene,mood,duration_min,prompt` — chia tối đa 8 pha cảm xúc cho Suno AI).
-  5. `6 thumbnail va title\B8_6_Phien_Ban_Thumbnail_Song_Ngu.csv` (6 phương án Thumbnail: chữ Hook `2–4 từ` chiếm `> 40%` chiều ngang, góc dưới bên phải sạch 100% không đồng hồ/hộp đen, không lặp chữ).
+  5. `6 thumbnail va title\B8_6_Phien_Ban_Thumbnail_Song_Ngu.csv` (6 phương án Thumbnail: chữ Hook `2–3 từ` tối đa chiếm `> 40%` chiều ngang, góc dưới bên phải sạch 100% không đồng hồ/hộp đen, **BẮT BUỘC chạy `yt-growth-optimizer\scripts\title.py --title "<Title>" --thumb "<Hook_Text>"` để xác nhận 0 lỗi `duplicate` lặp lại từ khóa của Title**).
 
 ## 3. Giao Thức Nhóm & Trí Nhớ JavisOS
 - **Bộ nhớ riêng:** `%USERPROFILE%\.gemini\config\team_memory\agents\yt-prompt-director\MEMORY.md`

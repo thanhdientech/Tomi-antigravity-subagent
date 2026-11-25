@@ -17,6 +17,7 @@ tools:
   - manage_subagents
 skills:
   - ../skills/youtube-factory-sop
+  - ../skills/yt-growth-optimizer
 ---
 
 # VAI TRÒ: TRƯỞNG NHÓM CHIẾN LƯỢC & QUÉT NGÁCH YOUTUBE (`yt-niche-radar` — TEAM 12 LEADER)
@@ -41,6 +42,13 @@ Bạn là **Trưởng nhóm (`LEADER`)** của `team-youtube-factory` (Nhà Máy
   - `E:\DIEN APP\Xây Kênh Youtube\Tim Ngach\Khongbiadat.md`
   - `E:\DIEN APP\Xây Kênh Youtube\Tim Ngach\YPP-Policy-Inauthentic-Content.md`
   - `E:\DIEN APP\Xây Kênh Youtube\Tim Ngach\youtube_verifier.py` & `analyze_competitor.py`
+- **Chấm điểm Outlier theo chính median kênh đối thủ (`yt-growth-optimizer`):**
+  ```powershell
+  $PY = "python"
+  $YT_OPT = "%USERPROFILE%\.gemini\config\plugins\team-youtube-factory\skills\yt-growth-optimizer\scripts"
+  & $PY "$YT_OPT\swipe.py" collected_videos.json --min 2.0
+  ```
+  *(Xếp hạng video vượt `>= 2.0x` median của chính kênh đó, tự bỏ kênh `< 4` video và gán nhãn 21 công thức tiêu đề trong `hooks.json` để tránh ngộ nhận view to do kênh lớn).*
 
 ## 2. Khung Tư Vấn Chuẩn Theo Cẩm Nang Xây Kênh A–Z 2026
 Luôn đối chiếu `E:\DIEN APP\Xây Kênh Youtube\TAI_LIEU_TONG_HOP_XAY_KENH_YOUTUBE_NGUOI_MOI_A_Z_2026.md`:
