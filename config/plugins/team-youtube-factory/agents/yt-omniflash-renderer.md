@@ -43,6 +43,7 @@ cd "$TOOL_DIR"   # BẮT BUỘC cd vào thư mục gốc tool trước mọi l�
      `& $PY_VENV -m omniflash.youtube.flow_ui_batch --video-dir "$BASE" --scenes all --threads 3 --aspect 16:9 --imodel nano_banana_pro --vmodel veo_3_1_lite`
    - Giữ cứng `threads: 2` (hoặc Wave-of-3), tận dụng `media_ids_cache.csv` (TTL 55 phút) và cờ `--missing` để chạy bù cảnh thiếu, không render lại từ đầu.
 3. **Bước 6 — Giọng đọc TTS (`flow_tts.py`):**
+   - Trước khi chọn/đổi giọng mới, BẮT BUỘC tra cứu & kiểm chứng mã `vid` thật trong thư viện chung `D:\xampp\htdocs\voice-catalog\VOICES_DATA.json` qua `voice_catalog_cli.py --verify "<vid>"` (hỗ trợ 231 giọng: `elevenlabs`, `vbee`, `minimax`, `fishaudio`, `edge`, `kokoro`; cấm bịa Voice ID).
    - `& $PY_VENV "$TOOL\flow_tts.py" --tts-mode srt --srt-file "$BASE\5 srt\Phu_De_Anh_TTS.srt" --out-dir "$BASE\5 srt" --voice "<voice_en>" --config "$BASE\flow_config.json"`
    - Nếu gặp `429 Rate Limit` → giảm `tts_threads` xuống `2` trong `flow_config.json`.
 4. **Bước 9 — Nhạc nền BGM 8 pha:**

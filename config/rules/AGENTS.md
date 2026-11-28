@@ -226,6 +226,7 @@ Trước khi giao kết quả, tự kiểm tra:
      - Săn, Kiểm Tra, Tư Vấn & Nạp Repo Skill vào Antigravity → **Team 13** (`skill-repo-scout`, `skill-ingestor-builder`, `skill-security-qa`) + `workflows\skill_curator_pipeline.py`
      - Video Ngắn 9:16 Facebook Reels / TikTok & Tiếp Thị Liên Kết Shopee (`:8600` + 13 Kênh Mẫu) → **Team 14** (`short-channel-product-scout`, `short-script-storyboarder`, `short-kol-studio-producer`, `short-video-qa-auditor`) + `workflows\short_video_affiliate_pipeline.py`
      - Build AI Agent JavisOS (Tomi `:7777` & InfoAsia `:7778` + Javis mới), Training Chống Bịa & Workflow n8n (`:5678/:5679`, VPS `42.29`) → **Team 15** (`javis-architect-builder`, `javis-anti-hallucination-trainer`, `n8n-workflow-engineer`, `javis-n8n-qa-auditor`) + `workflows\javisos_n8n_pipeline.py`
+     - Chiêm Tinh: Tử Vi Đẩu Số (`iztro-py`), Bát Tự 24 Tiết Khí & Thần Số Học Pythagoras (`SOP V3.0` 10 hồ sơ + QA 13 bước) → **Team 16** (`destiny-chart-engineer`, `destiny-tuvi-battu-master`, `destiny-numerology-advisor`, `destiny-qa-auditor`) + `workflows\destiny_sop_v3_pipeline.py`
      - Custom Local Automation Plugins (tùy chọn mở rộng riêng trên máy người dùng)
   3. **Chặng 3 — QA Độc Lập Bắt Buộc (`Team 1` + Auditor chuyên ngành):** Gọi `qa-code-tester` (Exit code 0) + `qa-visual-human-tester` (mở web/app dùng thử thật → chụp ảnh → mở đọc ảnh bằng `read_file`) + `qa-ifixai-auditor` (Scorecard Grade A/B) trước khi bàn giao.
 - **Bộ Nhớ Dài Hạn & Nối Cầu JavisOS Wiki (`team_memory_cli.py` + `javis_team_runner.py`):**

@@ -1,0 +1,12 @@
+{
+  "name": "team-tu-vi-bat-tu-than-so-hoc",
+  "displayName": "Team 16: Chiêm Tinh — Tử Vi, Bát Tự & Thần Số Học",
+  "version": "1.0.0",
+  "description": "Đội ngũ nhân sự AI chuyên lập lá số Tử Vi Đẩu Số (iztro-py), Tứ Trụ Bát Tự 24 Tiết Khí và Thần Số Học Pythagoras: chạy động cơ tất định chống bịa, xuất trọn bộ 10 hồ sơ SOP V3.0, Tinh bàn HTML 12 cung và kiểm toán độc lập 13 bước.",
+  "author": "INFOASIA",
+  "suggestedPrompts": [
+    "Lập lá số Tử Vi, Tứ Trụ Bát Tự 24 Tiết Khí và Thần Số Học kèm Tinh bàn HTML cho 1 cá nhân",
+    "Xuất trọn bộ 10 tệp Hồ sơ Mệnh Thư SOP V3.0 và chạy kiểm toán độc lập 13 bước",
+    "Xem tương hợp Hôn phối / Bạn làm ăn / 7 Đại họa sinh mạng & lộ trình vận hạn theo từng năm"
+  ]
+}

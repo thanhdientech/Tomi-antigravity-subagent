@@ -1,7 +1,7 @@
-# 🏛️ README — HỆ THỐNG ĐA TÁC TỬ 15 TEAM (55 SUBAGENTS) ANTIGRAVITY × JAVISOS
+# 🏛️ README — HỆ THỐNG ĐA TÁC TỬ 16 TEAM (59 SUBAGENTS) ANTIGRAVITY × JAVISOS
 
-> **Phiên bản:** `v2.2` · **Cập nhật:** `22/11/2026` · **Vị trí cài đặt trên máy:** `%USERPROFILE%\.gemini\config\`
-> **Quy mô chuẩn hóa:** **15 Phòng Ban (`plugins\team-*`)** · **55 Subagents cố định** · **41 Global Skills chuyên môn** · **5 Workflows tự động** · **Bộ nhớ dài hạn 5 lớp + Hook `SessionStart` & `PreInvocation`**
+> **Phiên bản:** `v2.3` · **Cập nhật:** `28/11/2026` · **Vị trí cài đặt trên máy:** `%USERPROFILE%\.gemini\config\`
+> **Quy mô chuẩn hóa:** **16 Phòng Ban (`plugins\team-*`)** · **59 Subagents cố định** · **41 Global Skills chuyên môn** · **6 Workflows tự động** · **Bộ nhớ dài hạn 5 lớp + Hook `SessionStart` & `PreInvocation`**
 >
 > 🚀 **CÀI SANG MÁY MỚI TRONG 2 PHÚT:** Đọc **[HUONG_DAN_CAI_DAT_MAY_MOI.md](./HUONG_DAN_CAI_DAT_MAY_MOI.md)** *(đủ danh sách phần mềm `winget` & thư viện Python)* → chạy **`CAI_DAT_1_CLICK_WINDOWS.bat`** → chạy **`CAI_THU_VIEN_PYTHON_CHO_SKILLS.bat`** (`requirements.txt`).
 
@@ -100,6 +100,7 @@ flowchart TD
 | **Team 13** | `team-skill-curator` | `skill-repo-scout` | `skill-ingestor-builder` | `skill-security-qa` | **Săn, Check, Tư vấn & Nạp Repo Skill:** Tìm & so trùng repo GitHub → **Tư vấn 3 Ngăn chờ duyệt** → Quét mã độc/Prompt Injection cách ly → Chuẩn hóa Javis + dựng FTS5 → Test 3 câu search. *(Xem [HUONG_DAN_TIM_VA_NAP_REPO_SKILL_ANTIGRAVITY.md](./HUONG_DAN_TIM_VA_NAP_REPO_SKILL_ANTIGRAVITY.md)).* |
 | **Team 14** | `team-short-video-affiliate` | `short-channel-product-scout` | `short-script-storyboarder`, `short-kol-studio-producer` | `short-video-qa-auditor` | **Nhà Máy Video Ngắn 9:16 Facebook Reels & Shopee Affiliate:** Đối chiếu 13 Kênh Mẫu (`01`..`13`), quét SP Shopee thật (`:8600`), kịch bản KOL 6 phong cách, render chuyển động thật (`Veo/Muse/Three.js`) cắt Khung Vàng `0.0s→3.4s` & QA soi ảnh chống nhảy bước/biến hình. |
 | **Team 15** | `team-javisos-n8n` | `javis-architect-builder` | `javis-anti-hallucination-trainer`, `n8n-workflow-engineer` | `javis-n8n-qa-auditor` | **Build AI Agent JavisOS (Tomi `:7777` & InfoAsia `:7778` + Javis mới), Training Chống Bịa & n8n (`:5678/:5679`):** Chỉnh sửa/deploy an toàn giữ nguyên Logo/Name & Brain cách ly, đào tạo chống bịa 5 Chốt chặn + Bộ câu hỏi bẫy, xây Workflow n8n & QA độc lập 4 tầng. |
+| **Team 16** | `team-tu-vi-bat-tu-than-so-hoc` | `destiny-chart-engineer` | `destiny-tuvi-battu-master`, `destiny-numerology-advisor` | `destiny-qa-auditor` | **Chiêm Tinh (Tử Vi Đẩu Số `iztro-py`, Bát Tự 24 Tiết Khí & Thần Số Học Pythagoras):** Động cơ tất định chống bịa lịch/sao, tách 3 tầng sao, xuất trọn bộ 10 hồ sơ SOP V3.0 + Tinh bàn HTML 12 cung & QA độc lập 13 bước. |
 
 *(Lưu ý: Trên máy cục bộ có thêm plugin riêng biệt `custom-local-plugin` thuộc nhóm nội bộ riêng, không đồng bộ lên bản Git Public. Bật/tắt độc lập từng Team trong mục **Customizations** của Antigravity App để tối ưu tốc độ & quota.)*
 

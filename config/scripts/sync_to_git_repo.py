@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-sync_to_git_repo.py (v2.2 — 15 Teams / 55 Subagents Public-Safe Portable Syncer)
+sync_to_git_repo.py (v2.3 — 16 Teams / 59 Subagents Public-Safe Portable Syncer + Local PII Guard)
 Đồng bộ sạch từ `C:\Users\INFOASIA\.gemini\config` sang repo Git (mặc định `E:\DIEN APP\Tomi-antigravity-subagent`
 hoặc truyền `--target <duong_dan_repo>`):
-  1. Đồng bộ 15 Team Plugins (55 Subagents), Global Skills, rules/, docs/, tools/team_memory_cli.py,
-     workflows/*.py (5 pipelines), 7 scripts lõi, và khung mẫu team_memory/ (15 teams + 55 agents).
-  2. Chặn tuyệt đối plugin nội bộ (`team-antidetect-automator`), `tools/sql_runner.py`, `runs/`, `*.db`, `*.bak*`, `*.exe`.
-  3. Khử cá nhân hóa & lọc sạch 100% mật khẩu SQL, IP LAN/WAN nội bộ, tên DB nội bộ, đường dẫn máy cá nhân cho repo PUBLIC.
-  4. Tự động chạy Security Secret Scanner trước khi kết thúc (Exit code 1 nếu phát hiện lọt bất kỳ secret nào).
+  1. Đồng bộ 16 Team Plugins (59 Subagents), Global Skills, rules/, docs/, tools/team_memory_cli.py,
+     workflows/*.py (6 pipelines), 7 scripts lõi, và khung mẫu team_memory/ (16 teams + 59 agents).
+  2. Chặn tuyệt đối plugin nội bộ (`team-antidetect-automator`), `tools/sql_runner.py`, `local_private_vault*`,
+     `.local_pii_guard.json`, `runs/`, `*.db`, `*.bak*`, `*.exe`.
+  3. Khử cá nhân hóa & lọc sạch 100% mật khẩu SQL, IP LAN/WAN nội bộ, tên DB nội bộ, đường dẫn máy cá nhân & PII cục bộ cho repo PUBLIC.
+  4. Tự động chạy Security & PII Scanner trước khi kết thúc (Exit code 1 nếu phát hiện lọt bất kỳ secret/PII nào).
 """
 from __future__ import annotations
 
@@ -104,9 +105,9 @@ def copy_and_sanitize_file(src: Path, dst: Path, sanitize: bool = True) -> None:
 
 def is_ignored_file(fname: str) -> bool:
     low = fname.lower()
-    if low.endswith((".pyc", ".pyo", ".db", ".db-wal", ".db-shm", ".bak", ".log", ".exe")):
+    if low.endswith((".pyc", ".pyo", ".db", ".db-wal", ".db-shm", ".bak", ".log", ".exe", ".pem", ".key", ".p12", ".pfx", ".crx")):
         return True
-    if ".bak_" in low or "openvpn" in low or "thong_tin_ket_noi" in low or "create_sql_readonly_agent_user" in low:
+    if ".bak_" in low or "openvpn" in low or "thong_tin_ket_noi" in low or "create_sql_readonly_agent_user" in low or "local_private_vault" in low or "local_pii_guard" in low:
         return True
     return False
 
@@ -185,7 +186,7 @@ def build_clean_team_memory_templates(src_mem: Path, dst_mem: Path) -> int:
     count = 0
 
     (dst_mem / "COMPANY_MEMORY.md").write_text(
-        "# COMPANY MEMORY — ANTIGRAVITY 15 TEAMS (55 SUBAGENTS)\n\n"
+        "# COMPANY MEMORY — ANTIGRAVITY 16 TEAMS (59 SUBAGENTS)\n\n"
         "- **Workspace chuẩn:** `%USERPROFILE%\\.gemini\\config`\n"
         "- **Nguyên tắc cốt lõi:** 5 Chốt Chặn Chống Ảo Giác + QA Gate (`Exit code 0`) + Verify-Loop Chụp & Đọc Ảnh + No Self-Grading.\n"
         "- **Ghi chú:** Chỉnh sửa file này để lưu quy tắc nội bộ, tech stack và cấu hình riêng của máy bạn.\n",
@@ -283,12 +284,22 @@ def build_clean_team_memory_templates(src_mem: Path, dst_mem: Path) -> int:
 def security_scan_repo(repo_dir: Path) -> list[str]:
     violations = []
     skip_dirs = {".git", "node_modules", "__pycache__", ".venv", "venv"}
+    patterns = list(FORBIDDEN_PATTERNS)
+    pii_guard_file = SRC_CONFIG / "scripts" / ".local_pii_guard.json"
+    if pii_guard_file.is_file():
+        try:
+            pii_cfg = json.loads(pii_guard_file.read_text(encoding="utf-8"))
+            patterns.extend(pii_cfg.get("forbidden_regex", []))
+        except Exception:
+            pass
+
     for root, dirs, files in os.walk(repo_dir):
         dirs[:] = [d for d in dirs if d not in skip_dirs]
         for fname in files:
             fpath = Path(root) / fname
             rel = fpath.relative_to(repo_dir).as_posix()
-            if fname == "sql_runner.py" or "team-antidetect-automator" in rel:
+            low_rel = rel.lower()
+            if fname == "sql_runner.py" or "team-antidetect-automator" in low_rel or "local_private_vault" in low_rel or "local_pii_guard" in low_rel or low_rel.endswith((".pem", ".key", ".p12", ".pfx")):
                 violations.append(f"FORBIDDEN_FILE: {rel}")
                 continue
             if fpath.suffix.lower() not in TEXT_EXTENSIONS:
@@ -299,9 +310,9 @@ def security_scan_repo(repo_dir: Path) -> list[str]:
                 txt = fpath.read_text(encoding="utf-8", errors="ignore")
             except Exception:
                 continue
-            for pat in FORBIDDEN_PATTERNS:
+            for pat in patterns:
                 if re.search(pat, txt, re.I):
-                    violations.append(f"SECRET/PATH_HIT [{pat}]: {rel}")
+                    violations.append(f"SECRET/PII_HIT [{pat}]: {rel}")
     return violations
 
 
@@ -312,8 +323,8 @@ def main() -> int:
 
     dst_repo = Path(args.target)
     dst_config = dst_repo / "config"
-    print(f"[SYNC v2.2] Source: {SRC_CONFIG}")
-    print(f"[SYNC v2.2] Target: {dst_repo}")
+    print(f"[SYNC v2.3] Source: {SRC_CONFIG}")
+    print(f"[SYNC v2.3] Target: {dst_repo}")
     dst_config.mkdir(parents=True, exist_ok=True)
 
     print("\n[1/8] Syncing config/skills/ (active domain skills)...")
@@ -325,7 +336,7 @@ def main() -> int:
     )
     print(f"  OK -> {n_skills} files synced in config/skills/")
 
-    print("\n[2/8] Syncing config/plugins/ (15 Teams / 55 Subagents + official plugins)...")
+    print("\n[2/8] Syncing config/plugins/ (16 Teams / 59 Subagents + official plugins)...")
     dst_plugins = dst_config / "plugins"
     if dst_plugins.exists():
         shutil.rmtree(dst_plugins)
@@ -373,7 +384,7 @@ def main() -> int:
             copy_and_sanitize_file(s_file, dst_scripts / name, sanitize=(name != "sync_to_git_repo.py"))
     print(f"  OK -> {len(ACTIVE_SCRIPTS)} active scripts synced")
 
-    print("\n[6/8] Syncing portable config/tools/ & config/workflows/ (5 pipelines)...")
+    print("\n[6/8] Syncing portable config/tools/ & config/workflows/ (6 pipelines)...")
     dst_tools = dst_config / "tools"
     if dst_tools.exists():
         shutil.rmtree(dst_tools)
@@ -390,7 +401,7 @@ def main() -> int:
         wf_count += 1
     print(f"  OK -> team_memory_cli.py & {wf_count} workflows built in portable mode (sql_runner.py excluded)")
 
-    print("\n[7/8] Building clean template config/team_memory/ (15 teams + 55 agents)...")
+    print("\n[7/8] Building clean template config/team_memory/ (16 teams + 59 agents)...")
     n_mem = build_clean_team_memory_templates(SRC_CONFIG / "team_memory", dst_config / "team_memory")
     print(f"  OK -> {n_mem} clean memory template files generated (0 personal runs)")
 

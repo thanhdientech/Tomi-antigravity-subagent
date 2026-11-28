@@ -34,7 +34,12 @@ Xuất đủ bộ file vào `<Video_Dir>\0 Noi dung video\` và `<Video_Dir>\5 s
 - `Buoc_0_Trend_Analysis.txt` → `Buoc_1_Y_Tuong.txt` → `Buoc_2_Dan_Y.txt`
 - `Buoc_3_Script_Viet.txt` & `Buoc_3.1_Script_English.txt` & `Buoc_3.1_Script_English_CLEAN.txt` (sạch 100% — không stage directions, không nhãn nội bộ AI).
 - `Buoc_4_Chot_Thoai.csv` / `B1_Phan_Canh.csv` (mã hóa `utf-8-sig`, khớp số cảnh `68–108` tùy kênh, **biến thiên thời lượng tự nhiên** lệch tối thiểu `25–45s` giữa các tập liên tiếp, tất cả `> 8 phút` để bật Mid-roll Ads).
-- `Buoc_4_Metadata.txt` (Tiêu đề CTR cao, 5 phương án Hook 30s đầu, Mô tả khóa tuyến Cấp 1, Tags sạch YPP, kèm đề xuất 2–3 ý tưởng Shorts cắt từ video dài nếu phù hợp).
+- `Buoc_4_Metadata.txt` (Tiêu đề CTR cao ưu tiên góc **phản trực giác / phá định kiến** thay vì liệt kê hẹp, 5 phương án Hook 30s đầu, Mô tả khóa tuyến Cấp 1, Tags sạch YPP, kèm đề xuất 2–3 ý tưởng Shorts cắt từ video dài nếu phù hợp).
+- **LUẬT SẮT GIỮ CHÂN 15 GIÂY ĐẦU (`15-Second Payoff — ZERO 50s Preamble` — Rút từ dữ liệu nội bộ Hỏi Studio 27/11/2026):**
+  - Kênh mới nếu để AVD 24h đầu tụt dưới `1:00` (như `0:37`) và CTR `< 2%` sẽ bị YouTube thu hẹp thử nghiệm Browse/Suggested ở các tập tiếp theo.
+  - **CẤM TUYỆT ĐỐI** mở bài vòng vo 40–50 giây nói về *"phim Hollywood / sách giáo khoa / thời Trung Cổ..."* rồi tận giây `0:50` mới vào bằng chứng đầu tiên!
+  - **BẮT BUỘC cấu trúc 30s đầu:** `0:00–0:07` (Hook phản trực giác + Big Promise) → **`0:08–0:18` (VÀO THẲNG bằng chứng/hiện vật/đáp án gây bất ngờ số #1 kèm hình ảnh trực quan!)** → `0:19–0:32` (Mở vòng lặp tò mò cho bí mật lớn nhất ở nửa sau video).
+  - Ưu tiên các **chủ đề đời thường rộng** chạm thẳng số đông (ăn uống, giấc ngủ, tuổi thọ thật, nuôi con, nhà ở/hang động, tình yêu, sinh tồn mùa đông) thay vì chủ đề liệt kê quá hẹp.
 - **Chấm điểm Hook & Lint Title+Thumbnail tự động (`yt-growth-optimizer` — bắt buộc cho kênh EN/US):**
   ```powershell
   $PY = "python"

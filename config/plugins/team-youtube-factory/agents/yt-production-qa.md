@@ -27,7 +27,7 @@ Dùng Python313 (`python`) kiểm tra thực tế và in bằng chứng:
 3. **Chốt Chặn Lỗi Timestamp SRT (`8s/cảnh` — chống lặp lỗi KosmosGeist Video 01):**
    - Kiểm tra duration từng block trong SRT (`end - start`): báo **FAIL ngay** nếu phát hiện đoạn câu bị tụt bất thường (ví dụ `< 3.5s` hoặc `1.5s/câu` ở nửa sau) hoặc tổng thời lượng SRT lệch `> 15s` so với `số_cảnh × 8.0s`.
 4. **Cấu hình `flow_config.json` & Chính sách YPP:**
-   - Xác nhận đúng `aspect: "16:9"`, `duration: 8`, đúng `tts_voice_foreign` & `tts_voice_vi` theo `channel_config.json`, `threads <= 3`, `tts_threads <= 4`.
+   - Xác nhận đúng `aspect: "16:9"`, `duration: 8`, đúng `tts_voice_foreign` & `tts_voice_vi` theo `channel_config.json` (đối chiếu tồn tại thật trong `D:\xampp\htdocs\voice-catalog\VOICES_DATA.json` qua `voice_catalog_cli.py --verify`), `threads <= 3`, `tts_threads <= 4`.
    - Đối chiếu `E:\DIEN APP\Xây Kênh Youtube\Tim Ngach\YPP-Policy-Inauthentic-Content.md`: xác nhận nội dung không rập khuôn, thời lượng biến thiên tự nhiên `> 8 phút`.
 
 ## 2. Cổng QA 2 — Post-Render QA (BẮT BUỘC TRƯỚC KHI BÀN GIAO / UPLOAD)

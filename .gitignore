@@ -52,3 +52,11 @@ desktop.ini
 *.rar
 *.zip
 *.exe
+
+# Local-only personal vault, PII guard & private keys
+*local_private_vault*
+.local_pii_guard.json
+*.pem
+*.key
+*.crx
+

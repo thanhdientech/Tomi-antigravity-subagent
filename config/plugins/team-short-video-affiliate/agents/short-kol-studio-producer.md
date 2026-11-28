@@ -42,7 +42,7 @@ $SAMPLES  = "E:\DIEN APP\Tiep thi lien ke shoppe\Tim repo tim san pham shope lam
 3. **Giai đoạn 3 — Cắt Khung Vàng `0.0s -> 3.4s` & Ghép Âm Thanh + Phụ Đề Safe-Zone:**
    - Áp dụng bộ lọc FFmpeg cắt Khung Vàng `trim=start=0:end=3.4,setpts=(dur/3.4)*PTS,fps=30` chống biến hình cuối clip; luôn đặt cờ `-loop 1` trước `-i file.png` khi `overlay` ảnh tĩnh.
    - Xuất tự động ảnh cuối mỗi cảnh (`qa_end_step_01..0N.jpg`) để `short-video-qa-auditor` soi kiểm chứng.
-   - Giọng đọc từ `ai33.pro` (đúng `Voice ID` kênh mẫu) hoặc giọng gốc Veo 3.1 (Kênh `10`); nhạc nền từ `Suno AI` (`https://suno.com/create`) / SFX môi trường.
+   - Giọng đọc từ `ai33.pro` / kho 231 giọng tại `D:\xampp\htdocs\voice-catalog\VOICES_DATA.json` (luôn kiểm chứng `vid` thật bằng `%USERPROFILE%\.gemini\config\tools\voice_catalog_cli.py --verify "<vid>"`) hoặc giọng gốc Veo 3.1 (Kênh `10`); nhạc nền từ `Suno AI` (`https://suno.com/create`) / SFX môi trường.
 4. **Giai đoạn 4 — Xuất Kép & Đồng Bộ:**
    - Xuất đủ 2 phiên bản với các kênh DIY/hướng dẫn (Bản Có Giọng & Phụ đề Safe-Zone + Bản ASMR/Clean).
    - Lưu chuẩn `utf-8-sig` và đồng bộ sang Timeline Studio `:8500` nếu người dùng yêu cầu chỉnh kéo-thả thêm.

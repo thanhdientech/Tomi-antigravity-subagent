@@ -293,5 +293,25 @@
       "javis-n8n-qa-auditor"
     ],
     "pinned_paths": []
+  },
+  "team-tu-vi-bat-tu-than-so-hoc": {
+    "title": "Team 16: Chiêm Tinh — Tử Vi, Bát Tự & Thần Số Học (SOP V3.0)",
+    "leader": "destiny-chart-engineer",
+    "members": [
+      "destiny-chart-engineer",
+      "destiny-tuvi-battu-master",
+      "destiny-numerology-advisor",
+      "destiny-qa-auditor"
+    ],
+    "roles": {
+      "destiny-chart-engineer": "LEADER",
+      "destiny-tuvi-battu-master": "MEMBER",
+      "destiny-numerology-advisor": "MEMBER",
+      "destiny-qa-auditor": "INDEPENDENT_AUDITOR"
+    },
+    "auditors": [
+      "destiny-qa-auditor"
+    ],
+    "pinned_paths": []
   }
 }

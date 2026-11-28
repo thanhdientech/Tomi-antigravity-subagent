@@ -1,4 +1,4 @@
-# COMPANY MEMORY — ANTIGRAVITY 15 TEAMS (55 SUBAGENTS)
+# COMPANY MEMORY — ANTIGRAVITY 16 TEAMS (59 SUBAGENTS)
 
 - **Workspace chuẩn:** `%USERPROFILE%\.gemini\config`
 - **Nguyên tắc cốt lõi:** 5 Chốt Chặn Chống Ảo Giác + QA Gate (`Exit code 0`) + Verify-Loop Chụp & Đọc Ảnh + No Self-Grading.

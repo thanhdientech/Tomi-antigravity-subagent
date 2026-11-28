@@ -30,6 +30,7 @@ description: "SOP Team 14 (Video Ngắn 9:16 Facebook Reels & Shopee Affiliate):
 - **Kho 13 Dạng Kênh Mẫu (`01`..`13`):** `E:\DIEN APP\Tiep thi lien ke shoppe\Tim repo tim san pham shope lam video\Nghien_Cuu_Kenh_Moi_Huong_Dan`
   - Master SOP: `00_MASTER_SOP_TOAN_BO_CAC_KENH_CHO_AGENT.md`
   - Bảng giọng đọc: `BANG_TRA_CUU_GIONG_DOC_AI33_VI_EN.md`
+  - **Thư viện giọng đọc TTS tổng hợp (231 giọng / 6 provider / 34 ngôn ngữ):** `D:\xampp\htdocs\voice-catalog\VOICES_DATA.json` (nghe thử `http://localhost/voice-catalog/VOICE_REVIEW.html`, tra cứu bằng `%USERPROFILE%\.gemini\config\tools\voice_catalog_cli.py --lang vi|en --prov elevenlabs|vbee|minimax|fishaudio|edge|kokoro --verify <vid>`)
   - Quy chuẩn chống nhảy bước & biến hình: `QUY_CHUAN_TAM_DONG_NHAT_VA_LOGIC_VIDEO.md`
 
 ## 3. Danh Mục Nhanh 13 Kênh Mẫu Đã Nghiên Cứu (`01`..`13`)

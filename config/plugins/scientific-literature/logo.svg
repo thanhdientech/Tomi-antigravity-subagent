@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"
+    viewBox="0 0 960 960" role="img" data-plugin="scientific-literature"
+    data-symbol="Sl">
+  <title>Antigravity for Science: Scientific Literature</title>
+  <desc>Antigravity for Science badge for Scientific Literature (Sl).</desc>
+  <style>
+    .frame { fill: #FEF7E0; stroke: #B06000; stroke-width: 28; }
+    .hero { fill: #1f1f1f; }
+    .atom-aura { fill: #ffffff; fill-opacity: 0.7; }
+    .atom-orbit { fill: none; stroke: #B06000; stroke-width: 14;
+      stroke-linecap: round; }
+    .atom-core { fill: #1f1f1f; }
+    .series-bar { fill: #B06000; }
+    .shell-on { fill: #B06000; }
+    .shell-off { fill: #1f1f1f; fill-opacity: 0.16; }
+    @media (prefers-color-scheme: dark) {
+      .frame { fill: #423214; stroke: #FDD663; }
+      .hero { fill: #e3e3e3; }
+      .atom-aura { fill: #1f1f1f; fill-opacity: 0.7; }
+      .atom-orbit { stroke: #FDD663; }
+      .atom-core { fill: #e3e3e3; }
+      .series-bar { fill: #FDD663; }
+      .shell-on { fill: #FDD663; }
+      .shell-off { fill: #e3e3e3; fill-opacity: 0.22; }
+    }
+    @media (max-width: 20.9px), (max-height: 20.9px) {
+      .frame { transform-box: view-box; transform-origin: 480px 480px;
+        transform: scale(1.09); stroke-width: 30.5; }
+      .hero { transform-box: view-box; transform-origin: 475.47px 471.56px;
+        transform: translate(4.53px, 4.48px) scale(1.2); }
+      .atom { transform: translate(20.16px, -23.04px); }
+      .atom-orbit { stroke-width: 18; }
+      .series-bar { transform-box: view-box; transform-origin: 224px 736px;
+        transform: translate(-34.56px, 23.76px) scale(1.07, 1.22); }
+      .shell-on, .shell-off { transform-box: view-box; transform-origin: 736px 736px;
+        transform: translate(22.36px, 23.76px) scale(1.22); }
+    }
+    @media (max-width: 18.9px), (max-height: 18.9px) {
+      .frame { transform: scale(1.14); stroke-width: 31.9; }
+      .hero { transform: translate(4.53px, 6.97px) scale(1.34); }
+      .atom { transform: translate(31.36px, -35.84px); }
+      .series-bar { transform: translate(-53.76px, 36.96px) scale(1.11, 1.34); }
+      .shell-on, .shell-off { transform: translate(40.36px, 36.96px) scale(1.34); }
+    }
+    @media (max-width: 16.9px), (max-height: 16.9px) {
+      .frame { transform: scale(1.2); stroke-width: 33.6; }
+      .hero { transform: translate(4.53px, 9.95px) scale(1.5); }
+      .atom { transform: translate(44.8px, -51.2px); }
+      .series-bar { transform: translate(-76.8px, 52.8px) scale(1.16, 1.48); }
+      .shell-on, .shell-off { transform: translate(62px, 52.8px) scale(1.48); }
+    }
+    @media (max-width: 14.9px), (max-height: 14.9px) {
+      .frame { transform: scale(1.25); stroke-width: 35; }
+      .hero { transform: translate(4.53px, 12.44px) scale(1.72); }
+      .atom { transform: translate(56px, -64px); }
+      .series-bar { transform: translate(-96px, 66px) scale(1.2, 1.6); }
+      .shell-on, .shell-off { transform: translate(80px, 66px) scale(1.6); }
+    }
+  </style>
+  <rect class="frame" x="134" y="134" width="692" height="692" rx="100"/>
+  <g class="atom">
+    <g transform="translate(700, 268)">
+      <circle class="atom-aura" r="68"/>
+      <ellipse class="atom-orbit" rx="52" ry="20" transform="rotate(-45)"/>
+      <ellipse class="atom-orbit" rx="52" ry="20" transform="rotate(45)"/>
+      <circle class="atom-core" r="14"/>
+    </g>
+  </g>
+  <path class="hero" d="M477.5 530.3Q477.5 517 468.1 509.9Q458.8 502.8 434.4 494.9Q410 487 395.8 479.4Q357 458.4 357 423Q357 404.5 367.4 390.1Q377.8 375.6 397.3 367.5Q416.7 359.4 440.9 359.4Q465.3 359.4 484.4 368.2Q503.4 377 514 393.1Q524.5 409.2 524.5 429.7H477.7Q477.7 414.1 467.8 405.4Q458 396.7 440.2 396.7Q423 396.7 413.4 404Q403.9 411.2 403.9 423.1Q403.9 434.2 415.1 441.7Q426.2 449.2 448 455.8Q488 467.8 506.2 485.6Q524.5 503.4 524.5 530Q524.5 559.5 502.2 576.3Q479.8 593.1 442 593.1Q415.8 593.1 394.2 583.5Q372.7 573.9 361.3 557.2Q350 540.5 350 518.4H397Q397 556.1 442 556.1Q458.8 556.1 468.1 549.3Q477.5 542.5 477.5 530.3ZM600.9 590H555.6V350H600.9Z"/>
+  <rect class="series-bar" x="224" y="726" width="208" height="20"
+      rx="10"/>
+  <circle class="shell-on" cx="616" cy="736" r="10"/>
+  <circle class="shell-on" cx="646" cy="736" r="10"/>
+  <circle class="shell-on" cx="676" cy="736" r="10"/>
+  <circle class="shell-off" cx="706" cy="736" r="10"/>
+  <circle class="shell-off" cx="736" cy="736" r="10"/>
+</svg>
